@@ -1,0 +1,195 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservation - OPALE PARIS{% endblock %}
+
+{% block stylesheets %}
+    {# Charge le CSS compilé #}
+    {{ encore_entry_link_tags('booking') }}
+{% endblock %}
+
+{% block javascripts %}
+    {# Charge le JS compilé #}
+    {{ encore_entry_script_tags('booking') }}
+{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+
+        <div class="visual-side">
+            <img src="{{ asset('img/opale.jpg') }}" alt="Ambiance Luxe" class="visual-img">
+        </div>
+
+        <div class="form-side">
+
+            <header class="header">
+                <img src="{{ asset('icones/Fichier16.svg') }}" alt="OPALE PARIS" class="brand-logo">
+            </header>
+
+            <div class="container">
+
+                <div class="steps-container">
+                    <ul class="progressbar">
+                        <li class="active">Identité</li>
+                        <li>Prestation</li>
+                        <li>Détails</li>
+                        <li>Validation</li>
+                    </ul>
+                </div>
+
+                <form id="bookingForm" class="form-satin" novalidate>
+
+                    <div class="form-step active" data-step="1">
+                        <h2 class="step-title">Qui êtes-vous ?</h2>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="firstname">Prénom <span class="asterisk">*</span></label>
+                                <input type="text" id="firstname" name="firstname" required minlength="2">
+                                <span class="error-message">Prénom requis.</span>
+                            </div>
+                            <div class="input-group">
+                                <label for="lastname">Nom <span class="asterisk">*</span></label>
+                                <input type="text" id="lastname" name="lastname" required minlength="2">
+                                <span class="error-message">Nom requis.</span>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="email">E-mail <span class="asterisk">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="error-message">Email valide requis.</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="address">Adresse du RDV <span class="asterisk">*</span></label>
+                            <input type="text" id="address" name="address" required placeholder="Rue, Ville, Code Postal">
+                            <span class="error-message">Adresse postale requise.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-step" data-step="2">
+                        <h2 class="step-title">Votre Expérience</h2>
+
+                        <div class="input-group">
+                            <label class="label-block">Service souhaité <span class="asterisk">*</span></label>
+                            <div class="radio-grid">
+                                <label class="radio-card">
+                                    <input type="radio" name="service" value="audit" required>
+                                    <span class="radio-content">
+                                    <span class="radio-title">Audit Dressing</span>
+                                    <span class="radio-info">3H • Domicile</span>
+                                </span>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="service" value="shopping" required>
+                                    <span class="radio-content">
+                                    <span class="radio-title">Personal Shopping</span>
+                                    <span class="radio-info">2H • Boutique</span>
+                                </span>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="service" value="event" required>
+                                    <span class="radio-content">
+                                    <span class="radio-title">Stylisme Événement</span>
+                                    <span class="radio-info">Sur devis • Tapis Rouge</span>
+                                </span>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="service" value="all_inclusive" required>
+                                    <span class="radio-content">
+                                    <span class="radio-title">All Inclusive</span>
+                                    <span class="radio-info">1500€ - 3000€ *</span>
+                                    <span class="radio-sub">Hors vêtements</span>
+                                    <span class="radio-details">Chauffeur • Déjeuner • Beauté</span>
+                                </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="date">Date souhaitée <span class="asterisk">*</span></label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="label-block">Créneaux disponibles <span class="asterisk">*</span></label>
+                            <div class="slots-grid">
+                                <label class="slot-btn"><input type="radio" name="time" value="09:00" required><span>09:00</span></label>
+                                <label class="slot-btn"><input type="radio" name="time" value="10:00" required><span>10:00</span></label>
+                                <label class="slot-btn"><input type="radio" name="time" value="11:00" required><span>11:00</span></label>
+                                <label class="slot-btn"><input type="radio" name="time" value="14:00" required><span>14:00</span></label>
+                                <label class="slot-btn"><input type="radio" name="time" value="15:30" required><span>15:30</span></label>
+                                <label class="slot-btn"><input type="radio" name="time" value="17:00" required><span>17:00</span></label>
+                            </div>
+                            <span class="error-message">Veuillez sélectionner un horaire.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-step" data-step="3">
+                        <h2 class="step-title">Vos Attentes</h2>
+
+                        <div class="input-group">
+                            <label for="message">Précisions <span class="asterisk">*</span></label>
+                            <textarea id="message" name="message" rows="5" required minlength="10" placeholder="Occasion spéciale, style recherché, contraintes..."></textarea>
+                            <span class="error-message">Veuillez écrire au moins 10 caractères.</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="budget">Budget Shopping (Optionnel)</label>
+                            <div class="input-with-icon">
+                                <input type="number" id="budget" name="budget" placeholder="Minimum 500" min="500">
+                                <span class="currency-symbol">€</span>
+                            </div>
+                            <span class="error-message">Le budget minimum accompagné est de 500€.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-step" data-step="4">
+                        <h2 class="step-title">Confirmation</h2>
+
+                        <div class="recap-box">
+                            <h3>Récapitulatif</h3>
+                            <p><strong>Client :</strong> <span id="recap-name">...</span></p>
+                            <p><strong>Email :</strong> <span id="recap-email">...</span></p>
+                            <p><strong>Service :</strong> <span id="recap-service">...</span></p>
+                            <p><strong>Date :</strong> <span id="recap-date">...</span> à <span id="recap-time">...</span></p>
+                            <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
+                            <p><strong>Budget :</strong> <span id="recap-budget">...</span></p>
+                            <p><strong>Demande :</strong> <span id="recap-message" style="font-style: italic; color: #666;">...</span></p>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="cgu" name="cgu" required>
+                            <label for="cgu">J'accepte les conditions générales de vente OPALE PARIS.</label>
+                        </div>
+                    </div>
+
+                    <div class="nav-buttons sticky-footer">
+                        <button type="button" id="prevBtn" class="btn-secondary hidden">← Retour</button>
+                        <button type="button" id="nextBtn" class="btn-primary">Suivant ➜</button>
+                        <button type="submit" id="submitBtn" class="btn-primary hidden">Confirmer la réservation</button>
+                    </div>
+
+                </form>
+
+                <div id="successView" class="success-message">
+                    <span class="success-icon">✨</span>
+                    <h2 class="success-title">Rendez-vous confirmé</h2>
+                    <p class="success-text">
+                        Merci <span id="conf-name"></span>.<br>
+                        Votre demande a bien été reçue par l'équipe OPALE PARIS.<br>
+                        Un e-mail de confirmation vient de vous être envoyé.
+                    </p>
+                    <a href="{{ path('app_booking') }}" class="btn-primary">Retour à l'accueil</a>
+                </div>
+
+            </div>
+
+            <br><br><br>
+
+            <footer class="footer-mini">
+                &copy; 2025 OPALE PARIS. Tous droits réservés.
+            </footer>
+        </div>
+    </div>
+{% endblock %}
