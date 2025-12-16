@@ -1,0 +1,131 @@
+// assets/styles/news.scss
+
+// Polices et Couleurs
+$black: #000;
+$white: #fff;
+$font-title: 'Helvetica', 'Arial', sans-serif; // Police titres (gras)
+$font-text: 'Helvetica', 'Arial', sans-serif;  // Police texte
+$font-serif: 'Times New Roman', serif;         // Police Logo
+
+.news-page {
+    background-color: $white;
+    color: $black;
+    padding-bottom: 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+// 1. HEADER (Centré)
+.page-header {
+    text-align: center;
+    padding: 60px 20px 80px;
+    max-width: 850px;
+    margin: 0 auto;
+
+    h1 {
+        font-family: $font-title;
+        font-weight: bold;
+        font-size: 2.8rem;
+        margin-bottom: 30px;
+        letter-spacing: -1px;
+    }
+
+    .intro-text {
+        font-family: $font-text;
+        color: #888; // Gris clair comme sur la capture
+        font-size: 0.95rem;
+        line-height: 1.6;
+        text-align: center;
+    }
+}
+
+// 2. ARTICLES
+.article-section {
+    margin-bottom: 120px; // Grand espace entre les articles
+    padding: 0 40px;
+}
+
+.article-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px; // Espace entre image et texte
+
+    // Pour inverser l'ordre (Article Cassy)
+    &.reverse {
+        flex-direction: row-reverse;
+    }
+
+    // --- IMAGE ---
+    .article-image {
+        flex: 1;
+        position: relative; // Important pour le logo par dessus
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        // Le Logo "OPALE PARIS" en bas de l'image
+        .overlay-logo {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            color: $white;
+
+            .brand {
+                display: block;
+                font-family: $font-serif;
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            .sub {
+                display: block;
+                font-family: $font-text;
+                font-size: 0.6rem;
+                letter-spacing: 4px;
+                margin-top: -2px;
+            }
+        }
+    }
+
+    // --- TEXTE ---
+    .article-content {
+        flex: 1;
+        padding-top: 10px; // Léger décalage vers le bas
+
+        h2 {
+            font-family: $font-title;
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .text-block {
+            font-family: $font-text;
+            font-size: 0.95rem;
+            line-height: 1.8; // Texte aéré
+            color: #222;
+            margin-bottom: 20px;
+
+            // Pour les sous-titres dans le texte ("Le Succès Stylistique")
+            .highlight {
+                font-weight: normal; // Pas gras, juste séparé
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    // Mobile (Empilement vertical)
+    @media (max-width: 900px) {
+        flex-direction: column !important;
+        gap: 30px;
+        .article-image { width: 100%; }
+    }
+}

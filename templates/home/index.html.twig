@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Opale Paris - Accueil{% endblock %}
+
+{# On ajoute un bloc pour pouvoir injecter une classe spécifique #}
+{% block header_class %}transparent-mode{% endblock %}
+
+{% block body %}
+    <div class="homepage-container">
+
+        {# 1. HERO SECTION (Bannière VIDÉO) #}
+        <section class="hero-section">
+
+            {# VIDÉO en arrière-plan (autoplay, muet, en boucle) #}
+            <video autoplay muted loop playsinline class="hero-video">
+                {# REMPLACE 'video.mp4' PAR LE NOM DE TON FICHIER VIDÉO #}
+                <source src="{{ asset('video/baniere_opale.mp4') }}" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+            <div class="video-overlay"></div> {# Filtre sombre par dessus #}
+        </section>
+
+        {# 2. SECTION COLLABORATIONS #}
+        <section class="collaborations-section">
+            <h3>Nos collaborations d'exception</h3>
+            {# ... (Le reste est identique à ta maquette) ... #}
+            <p class="section-desc">Nous avons l'honneur de collaborer avec les Maisons les plus prestigieuses...</p>
+            <a href="#" class="btn-outline">Voir la collection</a>
+
+            <div class="collab-grid">
+                {% for i in 1..6 %}
+                    <div class="collab-card">
+                        <div class="image-wrapper">
+                            {# Utilise tes vraies images ici #}
+                            <img src="https://via.placeholder.com/400x400/eee/000?text=Luxe+{{ i }}" alt="Collaboration">
+                        </div>
+                        <div class="card-info">
+                            <span class="brand-name">Louboutin x OPALE</span>
+                            <span class="product-type">Articles Femme - Chaussures</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        {# ... (Le reste des sections Services et Actualités suit ici) ... #}
+
+    </div>
+{% endblock %}

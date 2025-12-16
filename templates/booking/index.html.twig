@@ -2,6 +2,11 @@
 
 {% block title %}Réservation - OPALE PARIS{% endblock %}
 
+{# --- ON DESACTIVE LE HEADER ET LE FOOTER GLOBAUX --- #}
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
+
 {% block stylesheets %}
     {# Charge le CSS compilé #}
     {{ encore_entry_link_tags('booking') }}
@@ -100,7 +105,7 @@
                                     <span class="radio-title">All Inclusive</span>
                                     <span class="radio-info">1500€ - 3000€ *</span>
                                     <span class="radio-sub">Hors vêtements</span>
-                                    <span class="radio-details">Chauffeur • Déjeuner • Beauté</span>
+                                    <span class="radio-details">Chauffeur • Déjeuner • Soins</span>
                                 </span>
                                 </label>
                             </div>

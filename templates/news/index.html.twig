@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualités - OPALE PARIS{% endblock %}
+
+{% block body %}
+    <div class="news-page">
+
+        {# 1. TITRE & INTRODUCTION (Centré) #}
+        <div class="page-header">
+            <h1>Actualités</h1>
+            <p class="intro-text">
+                Retrouvez l'actualité d'OPALE Paris et plongez au cœur de nos collaborations avec l'élite du luxe.
+                De Louis Vuitton à Dior, en passant par Gucci, découvrez comment nos partenariats prestigieux nous
+                permettent de sublimer chaque silhouette et de vous offrir une expérience stylistique rare, raffinée
+                et entièrement personnalisée.
+            </p>
+        </div>
+
+        {# 2. ARTICLE 1 : ZYAD BRAHIMI (Image Gauche / Texte Droite) #}
+        <section class="article-section">
+            <div class="article-grid">
+                {# IMAGE #}
+                <div class="article-image">
+                    <img src="{{ asset('img/zyad.jpg') }}" alt="Zyad Brahimi Ballon d'Or">
+
+                </div>
+
+                {# TEXTE #}
+                <div class="article-content">
+                    <h2>Zyad Brahimi : Le Style d'un Ballon d'Or par Opale</h2>
+
+                    <p class="text-block">
+                        Opale a eu l'honneur d'accompagner Zyad Brahimi, le détenteur du Ballon d'Or, pour élever son image au niveau de son succès sportif.
+                    </p>
+
+                    <p class="text-block">
+                        L'objectif ? Que Zyad se différencie radicalement sur tapis rouge et s'impose comme un trendsetter du luxe masculin.
+                    </p>
+
+                    <p class="text-block">
+                        <span class="highlight">Le Succès Stylistique</span><br>
+                        Nous avons conçu une stratégie pour qu'il porte une tenue iconique et audacieuse d'une Grande Maison de luxe.
+                    </p>
+
+                    <p class="text-block">
+                        Le résultat a été immédiat : Opale a garanti que Zyad fasse la Une des médias mode et sportifs. Sa nouvelle image d'homme stylé, moderne et charismatique le positionne désormais comme une référence incontournable de l'élégance mondiale.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        {# 3. ARTICLE 2 : CASSY BERNARD (Texte Gauche / Image Droite) #}
+        <section class="article-section">
+            {# On ajoute la classe 'reverse' pour inverser l'ordre #}
+            <div class="article-grid reverse">
+
+                {# IMAGE (Sera à droite grâce au CSS) #}
+                <div class="article-image">
+                    <img src="{{ asset('img/cassy.jpg') }}" alt="Cassy Bernard Grammy">
+
+                </div>
+
+                {# TEXTE (Sera à gauche grâce au CSS) #}
+                <div class="article-content">
+                    <h2>Opale aux Grammy Awards : L'Éclat de Cassy Bernard</h2>
+
+                    <p class="text-block">
+                        Opale a sublimé la présence de Cassy Bernard, DJ et Productrice électro de renommée mondiale, sur le tapis rouge des prestigieux Grammy Awards.
+                    </p>
+
+                    <p class="text-block">
+                        L'objectif était d'imposer son esthétique hybride (luxe, underground et futuriste) sur la scène musicale globale.
+                    </p>
+
+                    <p class="text-block">
+                        <span class="highlight">Notre Stratégie : Impact et Exclusivité</span>
+                    </p>
+
+                    <p class="text-block">
+                        Nous avons orchestré l'obtention d'une pièce Haute Couture avant-gardiste auprès d'une Grande Maison de luxe. Ce choix audacieux a garanti que Cassy ne fasse pas que participer, mais qu'elle marque les esprits.
+                    </p>
+
+                    <p class="text-block">
+                        Grâce à notre logistique premium et clé en main (essayages express en coulisses, gestion des prêts), nous avons transformé son besoin en une déclaration de mode puissante, confirmant son statut d'icône stylistique moderne.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+{% endblock %}
