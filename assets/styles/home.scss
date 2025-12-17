@@ -1,9 +1,13 @@
 // assets/styles/home.scss
 
-// Variables Luxe
-$black: #000;
-$white: #fff;
-$font-serif: 'Times New Roman', serif;
+// --- VARIABLES LUXE ---
+$black: #121212;       // Noir profond
+$white: #ffffff;
+$gold: #D4AF37;        // Signature Opale
+$grey-light: #f4f4f4;
+
+// Typographie
+$font-serif: 'Playfair Display', serif;
 $font-sans: 'Helvetica', 'Arial', sans-serif;
 
 body {
@@ -11,138 +15,144 @@ body {
     font-family: $font-sans;
     color: $black;
     margin: 0;
+    -webkit-font-smoothing: antialiased;
 }
 
-// --- HEADER INTELLIGENT & LUXE ---
+// --- 1. HEADER INTELLIGENT & LUXE ---
 .main-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    // Padding Épais (comme demandé)
-    padding: 40px 50px;
+    padding: 30px 50px;
     box-sizing: border-box;
     z-index: 1000;
     transition: all 0.4s ease;
 
-    // --- 1. STYLE PAR DÉFAUT (Pour Actualités, Contact, etc.) ---
-    // C'est le style "Normal" : Fond Blanc, Texte Noir
+    // STYLE PAR DÉFAUT (Fond Blanc)
     position: sticky;
     top: 0;
     background-color: $white;
     color: $black;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 
-    // --- 2. STYLE SPÉCIFIQUE ACCUEIL (Mode Transparent) ---
-    // S'applique UNIQUEMENT si la balise <header> a la classe "transparent-mode"
+    // STYLE TRANSPARENT (Sur la vidéo d'accueil)
     &.transparent-mode {
-        position: fixed; // Flotte par dessus la vidéo
+        position: fixed;
         top: 0; left: 0; width: 100%;
-        background-color: transparent; // Invisible
-        color: $white; // Texte Blanc sur vidéo sombre
-        border-bottom: none;
+        background-color: transparent;
+        color: $white;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
 
-        // Le bouton RDV s'adapte à la vidéo (bordure blanche, fond semi-transparent)
+        // Bouton RDV semi-transparent
         .btn-rdv {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.1);
             border-color: $white;
             color: $white;
+            backdrop-filter: blur(5px);
         }
 
-        // --- INTERACTION AU SURVOL (Uniquement sur l'accueil) ---
+        // INTERACTION AU SURVOL (Le header devient blanc)
         &:hover {
-            background-color: $white; // Devient blanc
-            color: $black;            // Texte devient noir
+            background-color: $white;
+            color: $black;
             border-bottom: 1px solid #eee;
 
-            // On force la couleur des liens et icônes
             .logo-link, .icon-btn { color: $black; }
 
-            // On remet le bouton RDV en style "Noir" classique
+            // Le bouton RDV redevient noir
             .btn-rdv {
                 border-color: $black;
                 background-color: $black;
                 color: $white;
-                // Et son propre hover à lui
-                &:hover { background-color: transparent; color: $black; }
+                &:hover {
+                    background-color: $white;
+                    color: $black;
+                    border-color: $black;
+                }
             }
         }
     }
 
-    // --- 3. ÉLÉMENTS INTERNES (Communs à toutes les pages) ---
+    // --- ÉLÉMENTS DU HEADER ---
+    .header-left, .header-right {
+        display: flex; gap: 25px; align-items: center; z-index: 2;
+    }
 
-    // GAUCHE
-    .header-left { display: flex; gap: 25px; align-items: center; z-index: 2; }
-
-    // CENTRE (Logo Absolu)
     .header-center {
         position: absolute; left: 50%; transform: translateX(-50%); z-index: 1;
-        .logo-link { text-decoration: none; color: inherit; }
-        .brand-logo { height: 80px; width: auto; display: block; }
+        .logo-link { text-decoration: none; color: inherit; transition: color 0.3s;}
+        .brand-logo { height: 70px; width: auto; display: block; }
     }
 
-    // DROITE
-    .header-right { display: flex; gap: 25px; align-items: center; z-index: 2; }
-
-    // BOUTON RDV (Style de base : Noir sur fond Blanc)
+    // Bouton "PRENDRE RDV"
     .btn-rdv {
         display: flex; align-items: center;
-        // Pas de gap, on gère avec la marge du SVG
-
         background-color: $black;
         color: $white;
-        padding: 10px 20px;
+        padding: 12px 24px;
         text-decoration: none; text-transform: uppercase;
-        font-size: 0.75rem; letter-spacing: 1px; font-weight: bold;
-        border: 1px solid $black; transition: all 0.3s ease;
+        font-size: 0.7rem; letter-spacing: 1.5px; font-weight: 600;
+        border: 1px solid $black;
+        transition: all 0.3s ease;
 
-        // Marge fine entre l'icône et le texte
-        svg { width: 18px; height: 18px; stroke-width: 2px; margin-right: 4px; }
+        svg { width: 16px; height: 16px; margin-right: 8px; }
 
-        // Hover par défaut (sur fond blanc)
-        &:hover { background-color: transparent; color: $black; }
+        &:hover {
+            background-color: transparent;
+            color: $black;
+            border-color: $black;
+        }
     }
 
-    // ICONES
+    // Icônes (Menu, Panier, User)
     .icon-btn, .icon-link {
-        background: none; border: none; padding: 4px; cursor: pointer;
+        background: none; border: none; padding: 5px; cursor: pointer;
         color: inherit; display: flex; align-items: center; text-decoration: none;
-        svg { stroke-width: 1.5px; width: 24px; height: 24px;}
-        &:hover { color: #666; }
+        transition: color 0.3s, transform 0.2s;
+
+        svg { stroke-width: 1.5px; width: 26px; height: 26px;}
+
+        &:hover {
+            color: $gold; // Touche dorée au survol
+            transform: translateY(-2px);
+        }
     }
 
-    // PANIER
+    // Compteur Panier
     .cart-btn { position: relative; }
     .cart-count {
-        position: absolute; top: -5px; right: -5px;
-        background: $black; color: $white;
-        font-size: 0.7rem; width: 18px; height: 18px;
-        border-radius: 50%; display: flex; justify-content: center; align-items: center;
+        position: absolute; top: -2px; right: -4px;
+        background: $gold;
+        color: $white;
+        font-size: 0.65rem; font-weight: bold;
+        width: 18px; height: 18px;
+        border-radius: 50%;
+        display: flex; justify-content: center; align-items: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 }
+
 // --- 2. BANNIÈRE VIDÉO ---
 .hero-section {
     position: relative;
     text-align: center;
-    height: 100vh; // Hauteur de l'écran
+    height: 100vh;
     overflow: hidden;
-    background: $black; // Fond noir pendant le chargement
+    background: $black;
 
-    // La vidéo prend toute la place
     .hero-video {
         position: absolute;
         top: 50%; left: 50%;
         transform: translate(-50%, -50%);
         min-width: 100%; min-height: 100%;
         width: auto; height: auto;
-        object-fit: cover; // Remplir sans déformer
+        object-fit: cover;
         z-index: 1;
     }
 
-    // Filtre sombre pour que le texte ressorte
     .video-overlay {
         position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.2); // Noir transparent à 20%
+        background: rgba(18, 18, 18, 0.3);
         z-index: 2;
     }
 
@@ -151,30 +161,47 @@ body {
         top: 50%; left: 50%;
         transform: translate(-50%, -50%);
         color: $white;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        z-index: 3; // Au dessus de la vidéo et du filtre
+        z-index: 3;
+        width: 100%;
 
         .hero-title {
             font-family: $font-serif;
             font-size: 5rem;
             margin: 0;
             letter-spacing: 5px;
-            .hero-subtitle { display: block; font-size: 1.2rem; letter-spacing: 15px; margin-top: 10px; font-family: $font-sans; font-weight: 300;}
+            text-transform: uppercase;
+
+            .hero-subtitle {
+                display: block;
+                font-size: 1rem;
+                letter-spacing: 12px;
+                margin-top: 20px;
+                font-family: $font-sans;
+                font-weight: 300;
+                opacity: 0.9;
+            }
         }
     }
 }
 
-// --- 3. LE RESTE DES SECTIONS ---
+// --- 3. SECTIONS STANDARDS ---
 section {
-    padding: 80px 20px;
+    padding: 100px 20px;
     text-align: center;
 
     h3 {
-        font-size: 2rem;
-        margin-bottom: 15px;
+        font-size: 2.2rem;
+        margin-bottom: 20px;
         font-family: $font-serif;
         font-weight: normal;
+        color: $black;
+
+        // Soulignement doré chic
+        &::after {
+            content: ''; display: block;
+            width: 40px; height: 2px;
+            background: $gold;
+            margin: 20px auto 0;
+        }
     }
-
 }
-

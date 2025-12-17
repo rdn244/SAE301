@@ -12,6 +12,8 @@ import './styles/booking.scss';
 import './styles/article.scss';
 import './styles/footer.scss';
 import './styles/backlog.scss';
+import './styles/shop.scss';
+import './styles/sidebar.scss';
 
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

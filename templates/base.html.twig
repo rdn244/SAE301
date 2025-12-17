@@ -50,9 +50,10 @@
 
 
             {# Picto Favoris (Cœur) #}
-            <a href="#" class="icon-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-            </a>
+            <a href="{{ path('app_favorites') }}" class="icon-link" aria-label="Mes Favoris">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
 
             {# Picto Panier #}
             <a href="#" class="icon-btn cart-btn">
@@ -82,6 +83,8 @@
                         <li><a href="{{ path('app_home') }}">Accueil</a></li>
                         <li><a href="{{ path('app_news') }}">Actualités</a></li>
                         <li><a href="{{ path('app_booking') }}">Réservation</a></li>
+                        <li><a href="{{ path('app_collection') }}">Collection</a></li>
+                        <li><a href="{{ path('app_favorites') }}">Vos Favoris</a></li>
                         <li><a href="{{ path('app_admin_login') }}">Admin</a></li>
                     </ul>
                 </div>
@@ -156,6 +159,73 @@
         </div>
     </footer>
 {% endblock %}
+{# ... À mettre juste avant la fin du body ou block javascripts ... #}
 
+{# 1. LE FOND SOMBRE (BACKDROP) #}
+<div class="menu-backdrop" id="menuBackdrop"></div>
+
+{# 2. LA SIDEBAR (MENU LATÉRAL) #}
+<div class="sidebar-menu" id="sideMenu">
+
+    <div class="sidebar-header">
+        <span class="menu-title">MENU</span>
+        {# Bouton Fermer #}
+        <button class="close-menu-btn" id="closeMenuBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+    </div>
+
+    <div class="sidebar-content">
+        <ul class="nav-links">
+            <li><a href="{{ path('app_home') }}">Accueil</a></li>
+            <li><a href="{{ path('app_booking') }}">Réservation</a></li>
+            <li><a href="{{ path('app_news') }}">Actualités</a></li>
+            <li><a href="{{ path('app_collection') }}">Collection</a></li>
+            <li><a href="{{ path('app_favorites') }}">Vos Favoris</a></li>
+
+        </ul>
+
+        <div class="sidebar-footer">
+            <a href="{{ path('app_admin_login') }}" class="admin-link">Espace Styliste</a>
+        </div>
+    </div>
+</div>
+
+{# SCRIPT JS #}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const openBtn = document.querySelector('.menu-toggle'); // Ton bouton dans le header
+        const closeBtn = document.getElementById('closeMenuBtn');
+        const backdrop = document.getElementById('menuBackdrop');
+        const menu = document.getElementById('sideMenu');
+
+        function openMenu() {
+            menu.classList.add('active');
+            backdrop.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Bloque le scroll
+        }
+
+        function closeMenu() {
+            menu.classList.remove('active');
+            backdrop.classList.remove('active');
+            document.body.style.overflow = ''; // Réactive le scroll
+        }
+
+        if(openBtn) {
+            openBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openMenu();
+            });
+        }
+
+        if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+        if(backdrop) backdrop.addEventListener('click', closeMenu); // Ferme si on clique à côté
+
+        // Fermer au clic sur un lien
+        document.querySelectorAll('.sidebar-menu a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+    });
+</script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos Favoris - OPALE PARIS{% endblock %}
+
+{% block body %}
+    <div class="shop-page-container">
+
+        <div class="shop-header">
+            <h1>Favoris</h1>
+            <p class="subtitle">Ajoutez vos articles préférés et retrouvez-les ici à tout moment. Admirez facilement nos pièces d'exception et gardez vos coups de cœur à portée de main.</p>
+        </div>
+
+        <div class="product-grid">
+            {% for product in products %}
+                <div class="product-card">
+                    <div class="product-image-placeholder"></div>
+
+                    {# Icône cœur PLEIN (SVG rempli) #}
+                    <button class="wishlist-btn active">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </button>
+
+                    <div class="product-info">
+                        <h3>{{ product.title }}</h3>
+                        <span class="price">{{ product.price }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="load-more-container">
+            <button class="btn-load-more">Charger plus de produits</button>
+        </div>
+
+    </div>
+{% endblock %}

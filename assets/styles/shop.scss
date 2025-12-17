@@ -1,0 +1,126 @@
+// assets/styles/shop.scss
+
+// VARIABLES (Ajuste selon ton thème global)
+$black: #121212;
+$grey-text: #666;
+$light-grey-bg: #C4C4C4; // Couleur du placeholder gris des images
+$font-serif: 'Playfair Display', serif;
+$font-sans: 'Helvetica', 'Arial', sans-serif;
+
+.shop-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 20px 80px; // Espace pour le header fixe
+    text-align: center;
+
+    // Header de la page (Titre + Sous-titre)
+    .shop-header {
+        max-width: 600px;
+        margin: 0 auto 60px;
+
+        h1 {
+            font-family: $font-sans;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: $black;
+        }
+
+        .subtitle {
+            font-family: $font-sans;
+            color: $grey-text;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+    }
+
+    // LA GRILLE DE PRODUITS
+    .product-grid {
+        display: grid;
+        // 3 colonnes sur grand écran, responsive auto
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px 20px; // Espace vertical 40px, horizontal 20px
+        margin-bottom: 60px;
+
+        // Responsive mobile
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(2, 1fr); // 2 colonnes sur tablette
+        }
+        @media (max-width: 500px) {
+            grid-template-columns: 1fr; // 1 colonne sur mobile
+        }
+
+        // LA CARTE PRODUIT
+        .product-card {
+            text-align: left;
+            position: relative;
+
+            // Placeholder image gris
+            .product-image-placeholder {
+                width: 100%;
+                // Astuce pour un ratio carré/rectangle constant
+                padding-bottom: 120%; // Hauteur = 120% de la largeur
+                background-color: $light-grey-bg;
+                margin-bottom: 15px;
+            }
+
+            // Bouton Cœur
+            .wishlist-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 5px;
+                color: $black;
+                transition: transform 0.2s;
+
+                &:hover { transform: scale(1.1); }
+
+                // Si c'est un favori actif
+                &.active { color: $black; } // Le SVG est déjà rempli
+            }
+
+            // Infos (Titre + Prix)
+            .product-info {
+                h3 {
+                    font-family: $font-sans;
+                    font-size: 0.9rem;
+                    font-weight: 700;
+                    margin: 0 0 5px;
+                    color: $black;
+                }
+                .price {
+                    font-family: $font-sans;
+                    font-size: 0.9rem;
+                    color: $black;
+                }
+            }
+        }
+    }
+
+    // Bouton "Charger plus"
+    .load-more-container {
+        margin-top: 40px;
+        padding-top: 40px;
+        border-top: 1px solid #eee;
+
+        .btn-load-more {
+            background: none;
+            border: 1px solid #ccc;
+            padding: 15px 40px;
+            font-family: $font-sans;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &:hover {
+                border-color: $black;
+                background: $black;
+                color: white;
+            }
+        }
+    }
+}

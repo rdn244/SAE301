@@ -1,0 +1,109 @@
+// assets/styles/sidebar.scss
+
+// Variables locales
+$black: #121212;
+$white: #ffffff;
+$gold: #D4AF37;
+$grey-bg: #f9f9f9; // Nouvelle variable pour le fond du bouton
+$font-serif: 'Playfair Display', serif;
+$font-sans: 'Helvetica', 'Arial', sans-serif;
+
+// 1. Le fond sombre (Overlay)
+.menu-backdrop {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    opacity: 0; visibility: hidden;
+    transition: all 0.4s ease;
+
+    &.active { opacity: 1; visibility: visible; }
+}
+
+// 2. Le Menu Latéral (Tiroir)
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 100vh;
+    background-color: $white;
+    z-index: 2001;
+
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: 5px 0 30px rgba(0,0,0,0.1);
+    display: flex; flex-direction: column;
+
+    &.active { transform: translateX(0); }
+
+    // Header du menu
+    .sidebar-header {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 30px;
+        border-bottom: 1px solid #f0f0f0;
+
+        .menu-title { font-family: $font-sans; font-weight: bold; letter-spacing: 2px; font-size: 0.9rem; color: #999; }
+        .close-menu-btn {
+            background: none; border: none; cursor: pointer; color: $black;
+            transition: color 0.3s, transform 0.3s; padding: 5px;
+            &:hover { color: $gold; transform: rotate(90deg); }
+        }
+    }
+
+    // Contenu
+    .sidebar-content {
+        padding: 40px 30px;
+        flex-grow: 1;
+        display: flex; flex-direction: column;
+
+        .nav-links {
+            list-style: none; padding: 0; margin: 0;
+            li {
+                margin-bottom: 25px;
+                a {
+                    text-decoration: none; font-family: $font-serif; font-size: 1.8rem; color: $black; display: block;
+                    transition: color 0.3s, transform 0.2s;
+                    &:hover { color: $gold; transform: translateX(10px); }
+                }
+            }
+        }
+
+        // FOOTER DU MENU (MODIFIÉ POUR LA VISIBILITÉ)
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 20px;
+
+            // On enlève la bordure fine, on va faire un bouton bloc
+            // border-top: 1px solid #f0f0f0;
+
+            .admin-link {
+                display: block; // Prend toute la largeur
+                text-align: center;
+                background-color: $black; // Fond Noir
+                color: $white;            // Texte Blanc
+
+                padding: 15px 0;
+                margin-top: 10px;
+
+                font-family: $font-sans;
+                font-size: 0.9rem;        // Plus grand
+                font-weight: bold;        // Plus gras
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                text-decoration: none;
+
+                transition: all 0.3s ease;
+                border: 1px solid $black;
+
+                // Effet au survol
+                &:hover {
+                    background-color: $white; // Devient blanc
+                    color: $black;            // Texte noir
+                    border-color: $black;     // Bordure noire visible
+                }
+            }
+        }
+    }
+
+    @media (max-width: 400px) { width: 85%; }
+}
