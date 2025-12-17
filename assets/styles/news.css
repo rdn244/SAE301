@@ -1,42 +1,58 @@
 .news-page {
   background-color: #fff;
-  color: #000;
+  color: #121212;
+  padding-top: 100px;
   padding-bottom: 100px;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding-top: 50px;
 }
 
 .page-header {
   text-align: center;
-  padding: 60px 20px 80px;
-  max-width: 850px;
+  padding: 0 20px 60px;
+  max-width: 800px;
   margin: 0 auto;
 }
+.page-header .header-subtitle {
+  display: block;
+  font-family: "Inter", "Helvetica", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #D4AF37;
+  margin-bottom: 15px;
+}
 .page-header h1 {
-  font-family: "Helvetica", "Arial", sans-serif;
-  font-weight: bold;
-  font-size: 2.8rem;
-  margin-bottom: 30px;
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 3.5rem;
+  margin: 0;
   letter-spacing: -1px;
+  line-height: 1.1;
+}
+.page-header .header-separator {
+  width: 60px;
+  height: 1px;
+  background-color: #121212;
+  margin: 30px auto;
 }
 .page-header .intro-text {
-  font-family: "Helvetica", "Arial", sans-serif;
-  color: #888;
-  font-size: 0.95rem;
+  font-family: "Playfair Display", "Times New Roman", serif;
+  color: #666;
+  font-size: 1.1rem;
   line-height: 1.6;
-  text-align: center;
+  font-style: italic;
 }
 
 .article-section {
-  margin-bottom: 120px;
+  margin-bottom: 150px;
   padding: 0 40px;
 }
 
 .article-grid {
   display: flex;
-  align-items: flex-start;
-  gap: 60px;
+  align-items: center;
+  gap: 80px;
 }
 .article-grid.reverse {
   flex-direction: row-reverse;
@@ -44,64 +60,127 @@
 .article-grid .article-image {
   flex: 1;
   position: relative;
+  overflow: hidden;
 }
 .article-grid .article-image img {
   width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
 }
 .article-grid .article-image .overlay-logo {
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   left: 0;
   width: 100%;
   text-align: center;
   color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 .article-grid .article-image .overlay-logo .brand {
   display: block;
-  font-family: "Times New Roman", serif;
-  font-size: 1.8rem;
-  letter-spacing: 2px;
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-size: 2rem;
+  letter-spacing: 3px;
 }
 .article-grid .article-image .overlay-logo .sub {
   display: block;
-  font-family: "Helvetica", "Arial", sans-serif;
-  font-size: 0.6rem;
-  letter-spacing: 4px;
-  margin-top: -2px;
+  font-family: "Inter", "Helvetica", sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 6px;
+  margin-top: 5px;
 }
 .article-grid .article-content {
   flex: 1;
-  padding-top: 10px;
+  padding: 0 20px;
+}
+.article-grid .article-content .meta-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  font-family: "Inter", "Helvetica", sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.article-grid .article-content .meta-info .category {
+  color: #D4AF37;
+}
+.article-grid .article-content .meta-info .separator {
+  color: #ccc;
+  font-size: 0.6rem;
+}
+.article-grid .article-content .meta-info .date {
+  color: #666;
 }
 .article-grid .article-content h2 {
-  font-family: "Helvetica", "Arial", sans-serif;
-  font-size: 1.6rem;
-  font-weight: bold;
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-size: 2.2rem;
+  font-weight: 400;
   margin-bottom: 30px;
-  line-height: 1.3;
+  line-height: 1.2;
+  color: #121212;
 }
 .article-grid .article-content .text-block {
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: "Inter", "Helvetica", sans-serif;
   font-size: 0.95rem;
   line-height: 1.8;
-  color: #222;
-  margin-bottom: 20px;
+  color: #444;
+  margin-bottom: 25px;
+  text-align: justify;
 }
 .article-grid .article-content .text-block .highlight {
-  font-weight: normal;
-  display: block;
-  margin-bottom: 5px;
+  font-family: "Playfair Display", "Times New Roman", serif;
+  font-style: italic;
+  color: #121212;
+  font-weight: bold;
+}
+.article-grid .article-content .read-more {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #121212;
+  font-family: "Inter", "Helvetica", sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 5px;
+}
+.article-grid .article-content .read-more::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 1px;
+  background-color: #121212;
+  transition: width 0.3s ease;
+}
+.article-grid .article-content .read-more:hover::after {
+  width: 100%;
 }
 @media (max-width: 900px) {
   .article-grid {
     flex-direction: column !important;
-    gap: 30px;
+    gap: 40px;
+    margin-bottom: 80px;
   }
-  .article-grid .article-image {
+  .article-grid .article-image, .article-grid .article-content {
+    flex: auto;
     width: 100%;
+    padding: 0;
+  }
+  .article-grid .page-header h1 {
+    font-size: 2.5rem;
+  }
+  .article-grid .article-content h2 {
+    font-size: 1.8rem;
+    text-align: left;
   }
 }
 

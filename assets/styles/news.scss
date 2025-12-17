@@ -1,131 +1,212 @@
 // assets/styles/news.scss
 
-// Polices et Couleurs
-$black: #000;
+// VARIABLES (À adapter selon ton projet)
+$black: #121212;
 $white: #fff;
-$font-title: 'Helvetica', 'Arial', sans-serif; // Police titres (gras)
-$font-text: 'Helvetica', 'Arial', sans-serif;  // Police texte
-$font-serif: 'Times New Roman', serif;         // Police Logo
+$gold: #D4AF37; // Touche luxe
+$grey: #666;
+$font-serif: 'Playfair Display', 'Times New Roman', serif;
+$font-sans: 'Inter', 'Helvetica', sans-serif;
 
 .news-page {
     background-color: $white;
     color: $black;
+    padding-top: 100px; // Espace sous le header fixe
     padding-bottom: 100px;
-    max-width: 1200px;
+    max-width: 1300px; // Page large pour effet magazine
     margin: 0 auto;
-    padding-top: 50px;
 }
 
-// 1. HEADER (Centré)
+// 1. HEADER STYLE MAGAZINE
 .page-header {
     text-align: center;
-    padding: 60px 20px 80px;
-    max-width: 850px;
+    padding: 0 20px 60px;
+    max-width: 800px;
     margin: 0 auto;
 
+    .header-subtitle {
+        display: block;
+        font-family: $font-sans;
+        font-size: 0.75rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: $gold;
+        margin-bottom: 15px;
+    }
+
     h1 {
-        font-family: $font-title;
-        font-weight: bold;
-        font-size: 2.8rem;
-        margin-bottom: 30px;
+        font-family: $font-serif;
+        font-weight: 400; // Fin et élégant
+        font-size: 3.5rem;
+        margin: 0;
         letter-spacing: -1px;
+        line-height: 1.1;
+    }
+
+    .header-separator {
+        width: 60px;
+        height: 1px;
+        background-color: $black;
+        margin: 30px auto;
     }
 
     .intro-text {
-        font-family: $font-text;
-        color: #888; // Gris clair comme sur la capture
-        font-size: 0.95rem;
+        font-family: $font-serif;
+        color: $grey;
+        font-size: 1.1rem;
         line-height: 1.6;
-        text-align: center;
+        font-style: italic;
     }
 }
 
 // 2. ARTICLES
 .article-section {
-    margin-bottom: 120px; // Grand espace entre les articles
+    margin-bottom: 150px; // Beaucoup d'espace entre les articles
     padding: 0 40px;
 }
 
 .article-grid {
     display: flex;
-    align-items: flex-start;
-    gap: 60px; // Espace entre image et texte
+    align-items: center; // ✨ ALIGNEMENT VERTICAL DU TEXTE AU MILIEU DE L'IMAGE
+    gap: 80px; // Espace luxueux entre image et texte
 
-    // Pour inverser l'ordre (Article Cassy)
+    // Inversion pour le 2ème article
     &.reverse {
         flex-direction: row-reverse;
     }
 
     // --- IMAGE ---
     .article-image {
-        flex: 1;
-        position: relative; // Important pour le logo par dessus
+        flex: 1; // Prend 50%
+        position: relative;
+        overflow: hidden; // Pour effet zoom si besoin
 
         img {
             width: 100%;
             height: auto;
             display: block;
             object-fit: cover;
+            // Légère ombre portée diffuse
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
         }
 
-        // Le Logo "OPALE PARIS" en bas de l'image
+        // Logo sur l'image
         .overlay-logo {
             position: absolute;
-            bottom: 20px;
+            bottom: 30px;
             left: 0;
             width: 100%;
             text-align: center;
             color: $white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 
             .brand {
                 display: block;
                 font-family: $font-serif;
-                font-size: 1.8rem;
-                letter-spacing: 2px;
+                font-size: 2rem;
+                letter-spacing: 3px;
             }
             .sub {
                 display: block;
-                font-family: $font-text;
-                font-size: 0.6rem;
-                letter-spacing: 4px;
-                margin-top: -2px;
+                font-family: $font-sans;
+                font-size: 0.65rem;
+                letter-spacing: 6px;
+                margin-top: 5px;
             }
         }
     }
 
     // --- TEXTE ---
     .article-content {
-        flex: 1;
-        padding-top: 10px; // Léger décalage vers le bas
+        flex: 1; // Prend 50%
+        padding: 0 20px;
+
+        // MÉTADONNÉES (Date & Catégorie)
+        .meta-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            font-family: $font-sans;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+
+            .category { color: $gold; }
+            .separator { color: #ccc; font-size: 0.6rem; }
+            .date { color: $grey; }
+        }
 
         h2 {
-            font-family: $font-title;
-            font-size: 1.6rem;
-            font-weight: bold;
+            font-family: $font-serif;
+            font-size: 2.2rem;
+            font-weight: 400;
             margin-bottom: 30px;
-            line-height: 1.3;
+            line-height: 1.2;
+            color: $black;
         }
 
         .text-block {
-            font-family: $font-text;
+            font-family: $font-sans;
             font-size: 0.95rem;
-            line-height: 1.8; // Texte aéré
-            color: #222;
-            margin-bottom: 20px;
+            line-height: 1.8; // Texte très aéré pour la lecture
+            color: #444;
+            margin-bottom: 25px;
+            text-align: justify; // Justifié pour faire "Journal" (optionnel)
 
-            // Pour les sous-titres dans le texte ("Le Succès Stylistique")
             .highlight {
-                font-weight: normal; // Pas gras, juste séparé
-                display: block;
-                margin-bottom: 5px;
+                font-family: $font-serif;
+                font-style: italic;
+                color: $black;
+                font-weight: bold;
+            }
+        }
+
+        // BOUTON "LIRE PLUS"
+        .read-more {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: $black;
+            font-family: $font-sans;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 5px;
+
+            // Ligne soulignée animée
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0; left: 0;
+                width: 30px; // Petite ligne au début
+                height: 1px;
+                background-color: $black;
+                transition: width 0.3s ease;
+            }
+
+            &:hover::after {
+                width: 100%; // S'agrandit au survol
             }
         }
     }
 
-    // Mobile (Empilement vertical)
+    // --- RESPONSIVE MOBILE ---
     @media (max-width: 900px) {
-        flex-direction: column !important;
-        gap: 30px;
-        .article-image { width: 100%; }
+        flex-direction: column !important; // Force l'empilement
+        gap: 40px;
+        margin-bottom: 80px;
+
+        .article-image, .article-content {
+            flex: auto;
+            width: 100%;
+            padding: 0;
+        }
+
+        .page-header h1 { font-size: 2.5rem; }
+        .article-content h2 { font-size: 1.8rem; text-align: left; }
     }
 }

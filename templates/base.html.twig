@@ -68,16 +68,93 @@
     {% block body %}{% endblock %}
 </main>
 
-{# === ZONE FOOTER (Modifiable) === #}
 {% block footer %}
     <footer class="main-footer">
-        <div class="newsletter">
-            <h4>Inscrivez-vous à notre newsletter</h4>
-            <p>Soyez le premier informé de nos offres spéciales, de nos actualités et de nos mises à jour.</p>
-            <div class="input-group">
-                <input type="email" placeholder="Adresse e-mail">
-                <button>S'inscrire</button>
+        <div class="footer-container">
+
+            {# --- PARTIE HAUTE : LES 4 COLONNES --- #}
+            <div class="footer-columns">
+
+                {# Colonne 1 : Navigation #}
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                        <li><a href="{{ path('app_news') }}">Actualités</a></li>
+                        <li><a href="{{ path('app_booking') }}">Réservation</a></li>
+                        <li><a href="#">Lorem</a></li>
+                        <li><a href="#">Lorem</a></li>
+                    </ul>
+                </div>
+
+                {# Colonne 2 : Nous Contacter #}
+                <div class="footer-col">
+                    <h4>Nous Contacter</h4>
+                    <ul>
+                        <li><a href="{{ path('app_booking') }}">Réservation</a></li>
+                        <li class="contact-block">
+                            <span class="label">Email de contact :</span>
+                            <a href="mailto:contact@opaleparis.fr" class="link">contact@opaleparis.fr</a>
+                        </li>
+                        <li class="contact-block">
+                            <span class="label">Tél : +33 1 61 11 34 14</span>
+                        </li>
+                        <li class="contact-block">
+                            <span class="label">Localisation : Paris, France</span>
+                        </li>
+                    </ul>
+                </div>
+
+                {# Colonne 3 : Informations Légales #}
+                <div class="footer-col">
+                    <h4>Informations Légales</h4>
+                    <ul>
+                        <li><a href="#">Informations Légales</a></li>
+                        <li><a href="#">Mentions Légales</a></li>
+                        <li><a href="#">Politique de Confidentialité</a></li>
+                        <li><a href="#">Conditions Générales de Vente (CGV)</a></li>
+                        <li><a href="#">Lorem</a></li>
+                    </ul>
+                </div>
+
+                {# Colonne 4 : Restez Informé (Réseaux verticaux) #}
+                <div class="footer-col">
+                    <h4>Restez Informé</h4>
+                    <p class="social-text">Réseaux Sociaux</p>
+                    <div class="social-icons-vertical">
+                        {# On utilise des classes pour simuler les logos si tu n'as pas les SVG #}
+                        <a href="#" class="social-box instagram" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="social-box tiktok" aria-label="TikTok">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                        </a>
+                        <a href="#" class="social-box x-twitter" aria-label="X (Twitter)">
+                            {# Icone X simplifiée #}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16"/><path d="M4 20L20 4"/></svg>
+                        </a>
+                        <a href="#" class="social-box facebook" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                    </div>
+                </div>
             </div>
+
+            {# --- PARTIE BASSE : NEWSLETTER & LOGO --- #}
+            <div class="footer-bottom-section">
+                <h3>Inscrivez-vous à notre newsletter</h3>
+                <p>Soyez le premier informé de nos offres spéciales, de nos actualités et de nos mises à jour.</p>
+
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Adresse e-mail" required>
+                </form>
+
+                <div class="footer-logo">
+                    <span class="brand">OPALE</span>
+                    <span class="sub">PARIS</span>
+                </div>
+            </div>
+
         </div>
     </footer>
 {% endblock %}

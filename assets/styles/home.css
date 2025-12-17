@@ -200,47 +200,4 @@ section h3 {
   font-weight: normal;
 }
 
-.main-footer {
-  padding: 60px 20px;
-  border-top: 1px solid #eee;
-  text-align: center;
-  background: #fafafa;
-}
-.main-footer h4 {
-  font-family: "Times New Roman", serif;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-.main-footer p {
-  color: #666;
-  font-size: 0.9rem;
-  max-width: 500px;
-  margin: 0 auto 20px;
-}
-.main-footer .input-group {
-  display: inline-flex;
-  border: 1px solid #000;
-}
-.main-footer .input-group input {
-  padding: 12px 15px;
-  border: none;
-  width: 250px;
-  outline: none;
-  font-family: "Helvetica", "Arial", sans-serif;
-}
-.main-footer .input-group button {
-  padding: 12px 25px;
-  background: #000;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  transition: 0.2s;
-}
-.main-footer .input-group button:hover {
-  background: #333;
-}
-
 /*# sourceMappingURL=home.css.map */

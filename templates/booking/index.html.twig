@@ -6,14 +6,11 @@
 {% block header %}{% endblock %}
 {% block footer %}{% endblock %}
 
-
 {% block stylesheets %}
-    {# Charge le CSS compilé #}
     {{ encore_entry_link_tags('booking') }}
 {% endblock %}
 
 {% block javascripts %}
-    {# Charge le JS compilé #}
     {{ encore_entry_script_tags('booking') }}
 {% endblock %}
 
@@ -25,6 +22,9 @@
         </div>
 
         <div class="form-side">
+
+            {# --- AJOUT DU BOUTON RETOUR ICI --- #}
+            <a href="{{ path('app_home') }}" class="back-to-home-link">← Retour à l'accueil</a>
 
             <header class="header">
                 <img src="{{ asset('icones/Fichier16.svg') }}" alt="OPALE PARIS" class="brand-logo">
@@ -43,6 +43,7 @@
 
                 <form id="bookingForm" class="form-satin" novalidate>
 
+                    {# ... LE RESTE DU FORMULAIRE (Inchangé) ... #}
                     <div class="form-step active" data-step="1">
                         <h2 class="step-title">Qui êtes-vous ?</h2>
 
@@ -118,14 +119,7 @@
 
                         <div class="input-group">
                             <label class="label-block">Créneaux disponibles <span class="asterisk">*</span></label>
-                            <div class="slots-grid">
-                                <label class="slot-btn"><input type="radio" name="time" value="09:00" required><span>09:00</span></label>
-                                <label class="slot-btn"><input type="radio" name="time" value="10:00" required><span>10:00</span></label>
-                                <label class="slot-btn"><input type="radio" name="time" value="11:00" required><span>11:00</span></label>
-                                <label class="slot-btn"><input type="radio" name="time" value="14:00" required><span>14:00</span></label>
-                                <label class="slot-btn"><input type="radio" name="time" value="15:30" required><span>15:30</span></label>
-                                <label class="slot-btn"><input type="radio" name="time" value="17:00" required><span>17:00</span></label>
-                            </div>
+                            <div class="slots-grid"></div>
                             <span class="error-message">Veuillez sélectionner un horaire.</span>
                         </div>
                     </div>
@@ -158,7 +152,7 @@
                             <p><strong>Email :</strong> <span id="recap-email">...</span></p>
                             <p><strong>Service :</strong> <span id="recap-service">...</span></p>
                             <p><strong>Date :</strong> <span id="recap-date">...</span> à <span id="recap-time">...</span></p>
-                            <div style="border-top: 1px solid #ddd; margin: 10px 0;"></div>
+                            <div class="separator"></div>
                             <p><strong>Budget :</strong> <span id="recap-budget">...</span></p>
                             <p><strong>Demande :</strong> <span id="recap-message" style="font-style: italic; color: #666;">...</span></p>
                         </div>

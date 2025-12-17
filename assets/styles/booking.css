@@ -61,6 +61,22 @@ body, html {
   flex-direction: column;
   min-height: 100vh;
   background-color: var(--bg-color);
+  position: relative;
+}
+.form-side .back-to-home-link {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  text-decoration: none;
+  color: #999;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+  z-index: 10;
+}
+.form-side .back-to-home-link:hover {
+  color: var(--black);
 }
 
 @media (min-width: 900px) {
@@ -297,6 +313,10 @@ input:focus, select:focus, textarea:focus {
   margin-top: 10px;
 }
 
+.slots-grid:has(> label:only-child) {
+  grid-template-columns: 1fr;
+}
+
 .slot-btn {
   cursor: pointer;
   position: relative;
@@ -378,21 +398,74 @@ input:focus, select:focus, textarea:focus {
   cursor: pointer;
 }
 
+/* --- LE BLOC RECAPITULATIF CORRIGÉ --- */
 .recap-box {
-  background-color: #F9F9F9;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border-left: 2px solid var(--black);
+  background-color: var(--white); /* Utilisation de var() */
+  border: 1px solid #eaeaea;
+  padding: 40px;
+  margin-bottom: 3rem;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+  /* Correction ici : var(--black) au lieu de $black */
 }
-
+.recap-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--black);
+}
 .recap-box h3 {
+  /* Correction ici : var(--font-serif) et var(--black) */
   font-family: var(--font-serif);
-  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  color: var(--black);
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-weight: normal;
+  text-align: center;
+  letter-spacing: 1px;
 }
-
+.recap-box .separator {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #ddd, transparent);
+  margin: 25px 0;
+}
 .recap-box p {
-  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 15px;
   font-size: 0.95rem;
+  border-bottom: 1px dashed #f0f0f0;
+  padding-bottom: 5px;
+}
+.recap-box p strong {
+  color: #888;
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.recap-box p span {
+  color: var(--black);
+  font-weight: 500;
+  text-align: right;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+}
+.recap-box #recap-message {
+  display: block;
+  margin-top: 15px;
+  text-align: left;
+  font-style: italic;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border-left: none;
 }
 
 /* --- SUCCÈS --- */

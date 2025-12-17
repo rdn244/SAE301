@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }} - OPALE PARIS{% endblock %}
+
+{% block header_class %}{% endblock %}
+
+{% block body %}
+    <div class="article-page-container">
+
+        <div class="article-wrapper">
+
+            {# BOUTON RETOUR #}
+            <div class="back-nav">
+                <a href="{{ path('app_news') }}">
+                    <span class="arrow">←</span> Retour au journal
+                </a>
+            </div>
+
+            {# EN-TÊTE ARTICLE #}
+            <div class="article-header">
+                <div class="meta">
+                    <span class="cat">{{ article.category }}</span>
+                    <span class="sep">|</span>
+                    <span class="date">{{ article.date }}</span>
+                </div>
+                <h1>{{ article.title }}</h1>
+                <p class="subtitle">{{ article.subtitle }}</p>
+            </div>
+
+            {# CONTENU #}
+            <div class="article-body">
+                {{ article.content|raw }}
+            </div>
+
+            {# FOOTER PARTAGE #}
+            <div class="article-footer-share">
+                <div class="share-label">Partager cette histoire</div>
+                <div class="share-actions">
+                    <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Lien copié !')">
+                        Copier le lien
+                    </button>
+                    <a href="#" class="share-btn">LinkedIn</a>
+                    <a href="#" class="share-btn">X (Twitter)</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

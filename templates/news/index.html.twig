@@ -2,21 +2,23 @@
 
 {% block title %}Actualités - OPALE PARIS{% endblock %}
 
+{% block header_class %}{% endblock %} {# Header normal (blanc) #}
+
 {% block body %}
     <div class="news-page">
 
-        {# 1. TITRE & INTRODUCTION (Centré) #}
+        {# 1. HEADER ÉDITORIAL #}
         <div class="page-header">
-            <h1>Actualités</h1>
+            <span class="header-subtitle">JOURNAL</span>
+            <h1>L'Actualité de la Maison</h1>
+            <div class="header-separator"></div>
             <p class="intro-text">
-                Retrouvez l'actualité d'OPALE Paris et plongez au cœur de nos collaborations avec l'élite du luxe.
-                De Louis Vuitton à Dior, en passant par Gucci, découvrez comment nos partenariats prestigieux nous
-                permettent de sublimer chaque silhouette et de vous offrir une expérience stylistique rare, raffinée
-                et entièrement personnalisée.
+                Plongez au cœur de nos collaborations exclusives. De la cérémonie du Ballon d'Or aux Grammy Awards,
+                découvrez comment Opale Paris sublime l'élite mondiale à travers une vision du style sans compromis.
             </p>
         </div>
 
-        {# 2. ARTICLE 1 : ZYAD BRAHIMI (Image Gauche / Texte Droite) #}
+        {# 2. ARTICLE 1 : ZYAD BRAHIMI #}
         <section class="article-section">
             <div class="article-grid">
                 {# IMAGE #}
@@ -27,62 +29,63 @@
 
                 {# TEXTE #}
                 <div class="article-content">
-                    <h2>Zyad Brahimi : Le Style d'un Ballon d'Or par Opale</h2>
+                    <div class="meta-info">
+                        <span class="category">CÉRÉMONIE</span>
+                        <span class="separator">•</span>
+                        <span class="date">30 OCTOBRE 2024</span>
+                    </div>
+
+                    <h2>Zyad Brahimi : L'Élégance d'un Ballon d'Or</h2>
 
                     <p class="text-block">
-                        Opale a eu l'honneur d'accompagner Zyad Brahimi, le détenteur du Ballon d'Or, pour élever son image au niveau de son succès sportif.
+                        Opale a eu l'honneur d'orchestrer l'image de Zyad Brahimi lors de cette soirée historique.
+                        Notre mission : élever son allure au niveau de son talent exceptionnel.
                     </p>
 
                     <p class="text-block">
-                        L'objectif ? Que Zyad se différencie radicalement sur tapis rouge et s'impose comme un trendsetter du luxe masculin.
+                        Pour se différencier sur le tapis rouge, nous avons misé sur une esthétique <span class="highlight">Sharp & Timeless</span>.
+                        Le choix d'une coupe ajustée, combinée à des matières nobles, a permis d'imposer Zyad non plus seulement comme un athlète,
+                        mais comme une véritable icône du style masculin moderne.
                     </p>
 
-                    <p class="text-block">
-                        <span class="highlight">Le Succès Stylistique</span><br>
-                        Nous avons conçu une stratégie pour qu'il porte une tenue iconique et audacieuse d'une Grande Maison de luxe.
-                    </p>
-
-                    <p class="text-block">
-                        Le résultat a été immédiat : Opale a garanti que Zyad fasse la Une des médias mode et sportifs. Sa nouvelle image d'homme stylé, moderne et charismatique le positionne désormais comme une référence incontournable de l'élégance mondiale.
-                    </p>
+                    <a href="{{ path('app_news_show', {slug: 'zyad-brahimi'}) }}" class="read-more">Lire l'article complet</a>
                 </div>
             </div>
         </section>
 
-        {# 3. ARTICLE 2 : CASSY BERNARD (Texte Gauche / Image Droite) #}
+        {# 3. ARTICLE 2 : CASSY BERNARD #}
         <section class="article-section">
-            {# On ajoute la classe 'reverse' pour inverser l'ordre #}
+            {# "reverse" pour inverser l'ordre #}
             <div class="article-grid reverse">
 
-                {# IMAGE (Sera à droite grâce au CSS) #}
+                {# IMAGE #}
                 <div class="article-image">
                     <img src="{{ asset('img/cassy.jpg') }}" alt="Cassy Bernard Grammy">
 
                 </div>
 
-                {# TEXTE (Sera à gauche grâce au CSS) #}
+                {# TEXTE #}
                 <div class="article-content">
-                    <h2>Opale aux Grammy Awards : L'Éclat de Cassy Bernard</h2>
+                    <div class="meta-info">
+                        <span class="category">RED CARPET</span>
+                        <span class="separator">•</span>
+                        <span class="date">05 FÉVRIER 2025</span>
+                    </div>
+
+                    <h2>Grammy Awards : L'Éclat de Cassy Bernard</h2>
 
                     <p class="text-block">
-                        Opale a sublimé la présence de Cassy Bernard, DJ et Productrice électro de renommée mondiale, sur le tapis rouge des prestigieux Grammy Awards.
+                        Sur la scène musicale mondiale, l'image est aussi puissante que le son. Pour les Grammy Awards,
+                        Opale a conçu pour Cassy Bernard une silhouette hybride, mêlant codes du luxe et avant-garde underground.
                     </p>
 
                     <p class="text-block">
-                        L'objectif était d'imposer son esthétique hybride (luxe, underground et futuriste) sur la scène musicale globale.
+                        <span class="highlight">Stratégie d'Impact</span><br>
+                        Grâce à notre logistique "Tapis Rouge" (essayages express, sourcing pièce unique),
+                        Cassy a capté tous les regards. Ce n'était pas juste une tenue, c'était une déclaration : celle d'une artiste qui maîtrise son image autant que ses platines.
                     </p>
 
-                    <p class="text-block">
-                        <span class="highlight">Notre Stratégie : Impact et Exclusivité</span>
-                    </p>
-
-                    <p class="text-block">
-                        Nous avons orchestré l'obtention d'une pièce Haute Couture avant-gardiste auprès d'une Grande Maison de luxe. Ce choix audacieux a garanti que Cassy ne fasse pas que participer, mais qu'elle marque les esprits.
-                    </p>
-
-                    <p class="text-block">
-                        Grâce à notre logistique premium et clé en main (essayages express en coulisses, gestion des prêts), nous avons transformé son besoin en une déclaration de mode puissante, confirmant son statut d'icône stylistique moderne.
-                    </p>
+                    <a href="{{ path('app_news_show', {slug: 'cassy-bernard'}) }}" class="read-more">Lire l'article complet</a>
                 </div>
             </div>
         </section>

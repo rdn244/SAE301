@@ -1,0 +1,102 @@
+// assets/styles/article.scss
+
+$black: #121212;
+$gold: #D4AF37;
+$white: #fff;
+$serif: 'Playfair Display', 'Times New Roman', serif;
+$sans: 'Inter', 'Helvetica', sans-serif;
+
+.article-page-container {
+    background: $white;
+
+    // 👇 RÉDUCTION DE L'ESPACE ICI (Passé de 120px à 80px)
+    // Ajuste selon la hauteur réelle de ton menu fixe (souvent ~80px)
+    padding-top: 85px;
+
+    padding-bottom: 100px;
+
+    .article-wrapper {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 20px;
+
+        // BOUTON RETOUR
+        .back-nav {
+            margin-bottom: 20px; // Espace réduit sous le bouton retour
+            margin-top: 20px;    // Petit espace au-dessus
+            text-align: left;
+
+            a {
+                text-decoration: none;
+                color: #999;
+                font-family: $sans;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                transition: color 0.3s;
+
+                .arrow { font-size: 1rem; transition: transform 0.3s; }
+                &:hover { color: $black; .arrow { transform: translateX(-3px); } }
+            }
+        }
+
+        // HEADER
+        .article-header {
+            text-align: center;
+            margin-bottom: 40px; // Espace réduit
+
+            .meta {
+                display: flex; justify-content: center; gap: 15px;
+                font-family: $sans; font-size: 0.7rem; letter-spacing: 2px;
+                text-transform: uppercase; margin-bottom: 15px; color: #888;
+                .cat { color: $gold; font-weight: 700; }
+                .sep { color: #ddd; }
+            }
+
+            h1 {
+                font-family: $serif; font-size: 2.8rem; line-height: 1.15;
+                color: $black; margin-bottom: 15px; font-weight: 400;
+            }
+
+            .subtitle {
+                font-family: $serif; font-style: italic; font-size: 1.15rem;
+                color: #555; line-height: 1.5;
+            }
+        }
+
+        // CORPS
+        .article-body {
+            font-family: $serif; font-size: 1.1rem; line-height: 1.8;
+            color: #222; margin-bottom: 60px;
+
+            p { margin-bottom: 20px; }
+
+            h3 {
+                font-family: $sans; font-size: 1rem; text-transform: uppercase;
+                letter-spacing: 1px; margin-top: 40px; margin-bottom: 10px;
+                font-weight: 700; color: $black; border-left: 3px solid $gold;
+                padding-left: 15px;
+            }
+        }
+
+        // FOOTER PARTAGE
+        .article-footer-share {
+            border-top: 1px solid #eee; padding: 30px 0;
+            display: flex; flex-direction: column; align-items: center; gap: 15px;
+
+            .share-label { font-family: $serif; font-style: italic; color: #888; }
+            .share-actions {
+                display: flex; gap: 30px;
+                .share-btn {
+                    background: none; border: none; font-family: $sans;
+                    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
+                    color: $black; cursor: pointer; text-decoration: none;
+                    &:hover { color: $gold; }
+                }
+            }
+        }
+    }
+}
