@@ -1,0 +1,132 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Backlog - Février 2025{% endblock %}
+{% block header_class %}header-hidden{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block body %}
+    <div class="backlog-container">
+
+        {# SIDEBAR GAUCHE #}
+        <div class="backlog-sidebar">
+            <div class="month-nav">
+                <span>◄</span> Février <span>►</span>
+            </div>
+        </div>
+
+        {# CALENDRIER #}
+        <div class="backlog-main">
+            <div class="backlog-header">
+                <img src="{{ asset('icones/Fichier16.svg') }}" alt="OPALE PARIS" class="brand-logo">
+                <div class="user-controls">
+                    <a href="{{ path('app_admin_logout') }}" class="logout-btn">Déconnexion</a>
+                </div>
+            </div>
+
+            <div class="calendar-weekdays">
+                <div>Lundi</div><div>Mardi</div><div>Mercredi</div><div>Jeudi</div><div>Vendredi</div><div>Samedi</div>
+            </div>
+
+            <div class="calendar-grid">
+                {# Boucle de 1 à 30 comme sur la maquette #}
+                {% for day in 1..30 %}
+                    <div class="calendar-day">
+                        <span class="day-number">{{ day }}</span>
+                        {% if appointments[day] is defined %}
+                            {% set rdv = appointments[day] %}
+
+                            {# On passe toutes les infos en attributs pour le JS #}
+                            <div class="rdv-card type-{{ rdv.type }}"
+                                 onclick="openModal({{ rdv|json_encode|e('html_attr') }}, '{{ day }} Février')">
+                                <div class="client-name">{{ rdv.client }}</div>
+                                <div class="rdv-service">{{ rdv.service }}</div>
+                                <span class="rdv-time">{{ rdv.time }}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        {# --- NOUVEAU : LA MODALE POP-UP --- #}
+        <div class="modal-overlay" id="rdvModal">
+            <div class="modal-card">
+
+                <div class="modal-header">
+                    <h3>Détails du rendez-vous:</h3>
+                </div>
+
+                <div class="modal-body">
+                    <div class="detail-row">
+                        <label>Nom & Prénom:</label>
+                        <span id="m-name">Eric Judor</span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Email:</label>
+                        <span id="m-email">email@test.com</span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Date & Heure:</label>
+                        <span id="m-time">9h</span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Adresse:</label>
+                        <span id="m-address">41 Bd Ney, Paris</span>
+                    </div>
+                    <div class="detail-row">
+                        <label>Service:</label>
+                        <span id="m-service">Audit dressing</span>
+                    </div>
+
+                    <div class="stylist-section">
+                        <label>Stylist désigné:</label>
+                        <div class="stylist-avatars">
+                            <div class="avatar" id="avatar-Chris">Chris</div>
+                            <div class="avatar" id="avatar-Alex">Alex</div>
+                            <div class="avatar" id="avatar-Mike">Mike</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn-circle btn-green">✔</button>
+                    <button class="btn-circle btn-grey">✎</button>
+                    <button class="btn-circle btn-red" onclick="closeModal()">✖</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // JS POUR LA POP-UP
+        const modal = document.getElementById('rdvModal');
+
+        function openModal(data, dateStr) {
+            // Remplissage des champs
+            document.getElementById('m-name').innerText = data.client;
+            document.getElementById('m-email').innerText = data.email;
+            document.getElementById('m-time').innerText = dateStr + ' à ' + data.time;
+            document.getElementById('m-address').innerText = data.address;
+            document.getElementById('m-service').innerText = data.service;
+
+            // Gestion Avatar Actif
+            document.querySelectorAll('.avatar').forEach(av => av.classList.remove('active'));
+            const activeAvatar = document.getElementById('avatar-' + data.stylist);
+            if(activeAvatar) activeAvatar.classList.add('active');
+
+            // Affichage (Flex pour centrer)
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Fermer si on clique en dehors de la carte
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    </script>
+{% endblock %}

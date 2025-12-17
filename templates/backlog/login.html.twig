@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accès Styliste - Opale{% endblock %}
+{% block header_class %}header-hidden{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block body %}
+    <div style="height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #f8f8f8;">
+
+        {# BOÎTE DE CONNEXION #}
+        <div style="background: white; padding: 40px; border: 1px solid #ddd; text-align: center; max-width: 400px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+            <h1 style="font-family: 'Playfair Display', serif; margin-bottom: 30px; color: #121212;">Espace Styliste</h1>
+
+            {% for message in app.flashes('error') %}
+                <div style="color: #D4AF37; margin-bottom: 20px; font-weight: bold;">{{ message }}</div>
+            {% endfor %}
+
+            <form method="post">
+                <input type="password" name="password" placeholder="Mot de passe d'accès"
+                       style="width: 100%; padding: 15px; border: 1px solid #ccc; margin-bottom: 20px; box-sizing: border-box; font-family: 'Helvetica', sans-serif;" required>
+
+                <button type="submit"
+                        style="width: 100%; padding: 15px; background: #121212; color: white; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; transition: background 0.3s;">
+                    ENTRER
+                </button>
+            </form>
+
+            {# LIEN RETOUR ACCUEIL #}
+            <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+                <a href="{{ path('app_home') }}" style="text-decoration: none; color: #999; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s;" onmouseover="this.style.color='#121212'" onmouseout="this.style.color='#999'">
+                    ← Retour à l'accueil
+                </a>
+            </div>
+        </div>
+
+        {# --- MINI JEU : LE CADENAS MYSTÈRE --- #}
+        <div style="margin-top: 40px; text-align: center;">
+            <p style="color: #ccc; font-size: 0.8rem; margin-bottom: 10px; cursor: pointer;" onclick="toggleGame()">Mot de passe oublié ?</p>
+
+            <div id="mini-game" style="display: none; background: #fff; padding: 15px; border-radius: 8px; border: 1px solid #eee;">
+                <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">Crochetez le cadenas (Cliquez 5 fois)</p>
+
+                <div id="lock-btn" onclick="pickLock()" style="font-size: 2rem; cursor: pointer; user-select: none; transition: transform 0.1s;">
+                    🔒
+                </div>
+
+                <div id="password-reveal" style="display: none; margin-top: 10px; color: #D4AF37; font-weight: bold; font-family: 'Playfair Display', serif;">
+                    Sésame : opale2025
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // LOGIQUE DU MINI-JEU
+        let clicks = 0;
+        const lockBtn = document.getElementById('lock-btn');
+        const reveal = document.getElementById('password-reveal');
+        const gameContainer = document.getElementById('mini-game');
+
+        function toggleGame() {
+            // Affiche ou cache le jeu
+            if (gameContainer.style.display === 'none') {
+                gameContainer.style.display = 'block';
+            } else {
+                gameContainer.style.display = 'none';
+            }
+        }
+
+        function pickLock() {
+            clicks++;
+
+            // Animation de secousse
+            lockBtn.style.transform = 'rotate(10deg)';
+            setTimeout(() => lockBtn.style.transform = 'rotate(-10deg)', 100);
+            setTimeout(() => lockBtn.style.transform = 'rotate(0deg)', 200);
+
+            if (clicks >= 5) {
+                // VICTOIRE
+                lockBtn.innerHTML = '🔓'; // Cadenas ouvert
+                lockBtn.style.cursor = 'default';
+                lockBtn.onclick = null; // Désactive le clic
+                reveal.style.display = 'block'; // Affiche le MDP
+
+                // Petit effet de succès (Vibration mobile si supportée)
+                if (navigator.vibrate) navigator.vibrate([100, 50, 100]);
+            }
+        }
+    </script>
+{% endblock %}
