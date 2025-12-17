@@ -1,0 +1,167 @@
+// --- FOOTER GLOBAL ---
+
+.main-footer {
+    background-color: #fff; // Fond Blanc
+    color: #121212;         // Texte Noir
+    padding-top: 80px;
+    padding-bottom: 40px;
+    border-top: 1px solid #eee; // Ligne fine de séparation
+    font-family: 'Helvetica', 'Arial', sans-serif;
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+    }
+
+    // 1. GRILLE 4 COLONNES
+    .footer-columns {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); // 4 colonnes de même taille
+        gap: 30px;
+        margin-bottom: 100px; // Espace avant la newsletter
+
+        .footer-col {
+            h4 {
+                font-size: 0.95rem;
+                font-weight: 700; // Gras
+                color: #000;
+                margin-bottom: 25px;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    margin-bottom: 12px;
+                    font-size: 0.95rem;
+                    color: #666; // Gris foncé
+
+                    a {
+                        text-decoration: none;
+                        color: #666;
+                        transition: color 0.2s;
+                        &:hover { color: #000; }
+                    }
+
+                    // Style pour les blocs contact (Email, Tel...)
+                    &.contact-block {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 2px;
+                        .label { color: #666; }
+                        .link { color: #666; }
+                    }
+                }
+            }
+
+            .social-text {
+                color: #666;
+                margin-bottom: 20px;
+                font-size: 0.95rem;
+            }
+
+            // --- ICÔNES VERTICALES (CARRÉS NOIRS) ---
+            .social-icons-vertical {
+                display: flex;
+                flex-direction: column; // Vertical
+                gap: 15px; // Espace entre les carrés
+
+                .social-box {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;  // Carré de 40px
+                    height: 40px;
+                    background-color: #000; // Fond Noir
+                    color: #fff; // Icône Blanche
+                    border-radius: 6px; // Coins arrondis
+                    transition: transform 0.2s;
+
+                    &:hover { transform: scale(1.05); }
+
+                    svg {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    // 2. PARTIE BASSE (NEWSLETTER & LOGO)
+    .footer-bottom-section {
+        text-align: center;
+        max-width: 650px;
+        margin: 0 auto;
+
+        h3 {
+            font-family: 'Times New Roman', serif; // Serif pour le titre
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .newsletter-form {
+            margin-bottom: 60px;
+
+            input {
+                width: 100%;
+                padding: 15px;
+                border: 1px solid #ccc;
+                font-size: 1rem;
+                outline: none;
+                text-align: left; // Texte à gauche comme sur l'image
+
+                &::placeholder { color: #aaa; }
+                &:focus { border-color: #000; }
+            }
+        }
+
+        // LOGO OPALE PARIS
+        .footer-logo {
+            .brand {
+                display: block;
+                font-family: 'Times New Roman', serif;
+                font-size: 3.5rem;
+                letter-spacing: 2px;
+                line-height: 1;
+                color: #000;
+            }
+            .sub {
+                display: block;
+                font-family: sans-serif;
+                font-size: 0.8rem;
+                letter-spacing: 6px;
+                margin-top: 5px;
+                text-transform: uppercase;
+                color: #000;
+            }
+        }
+    }
+
+    // VERSION MOBILE
+    @media (max-width: 900px) {
+        .footer-columns {
+            grid-template-columns: 1fr; // Une seule colonne
+            text-align: center;
+        }
+
+        .social-icons-vertical {
+            flex-direction: row !important; // Horizontal sur mobile
+            justify-content: center;
+        }
+
+        .newsletter-form input { text-align: center; }
+    }
+}

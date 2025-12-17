@@ -10,6 +10,7 @@ import './styles/home.scss';
 import './styles/news.scss';
 import './styles/booking.scss';
 import './styles/article.scss';
+import './styles/footer.scss';
 
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
