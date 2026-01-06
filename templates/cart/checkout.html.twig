@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement Sécurisé - OPALE PARIS{% endblock %}
+
+{% block body %}
+    <div class="checkout-page-container">
+
+        <div class="checkout-header">
+            <h1>Paiement Sécurisé</h1>
+            <p>Total à régler : <strong>{{ total|number_format(0, ',', ' ') }} €</strong></p>
+        </div>
+
+        {# DÉBUT DE TON CODE #}
+        <div class="modal">
+            {# On pointe le formulaire vers la route de succès #}
+            <form class="form" action="{{ path('cart_checkout_success') }}" method="POST">
+                <div class="credit-card-info--form">
+                    <div class="input_container">
+                        <label class="input_label" for="password_field">Nom du titulaire</label>
+                        <input placeholder="Jean Dupont" title="Nom complet" name="input-name" type="text" class="input_field" id="password_field" required>
+                    </div>
+                    <div class="input_container">
+                        <label class="input_label" for="password_field">Numéro de carte</label>
+                        <input placeholder="0000 0000 0000 0000" title="Numéro de carte" name="input-name" type="text" class="input_field" id="password_field" required>
+                    </div>
+                    <div class="input_container">
+                        <label class="input_label" for="password_field">Date d'expiration / CVV</label>
+                        <div class="split">
+                            <input placeholder="MM/AA" title="Date d'expiration" name="input-name" type="text" class="input_field" id="password_field" required>
+                            <input placeholder="123" title="CVV" name="cvv" type="number" class="input_field" id="password_field" required>
+                        </div>
+                    </div>
+
+                    {# BOUTON PAYER #}
+                    <button class="purchase--btn">Payer {{ total|number_format(0, ',', ' ') }} €</button>
+
+                    <div class="separator">
+                        <hr class="line">
+                        <p>ou payer avec</p>
+                        <hr class="line">
+                    </div>
+                    <div class="payment--options">
+                        <button type="button" name="paypal">
+                            {# ... (Tes SVGs Paypal, Apple Pay, Google Pay sont ici, je les laisse tels quels) ... #}
+                            {# Pour raccourcir la réponse, je mets juste un texte, mais GARDE TES SVG d'origine ! #}
+                            <span>PayPal</span>
+                        </button>
+                        <button type="button" name="apple-pay">
+                            <span>Apple Pay</span>
+                        </button>
+                        <button type="button" name="google-pay">
+                            <span>Google Pay</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {# FIN DE TON CODE #}
+
+        <div class="secure-note">
+            <p>🔒 Paiement 100% sécurisé et chiffré SSL.</p>
+            <a href="{{ path('cart_index') }}">Retour au panier</a>
+        </div>
+
+    </div>
+{% endblock %}

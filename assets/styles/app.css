@@ -1,0 +1,28 @@
+/* --- 1. DÉCLARATION DES POLICES --- */
+
+@font-face {
+    font-family: 'Lavish';
+    src: url('../fonts/lavish.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Acumin';
+    src: url('../fonts/acumin.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* --- 2. APPLICATION DES POLICES --- */
+
+/* Appliquer Lavish sur tous les titres H2 et H3 */
+h2, h3 {
+    font-family: 'Lavish', serif !important;
+    font-weight: 400;
+}
+
+/* Appliquer Acumin sur le texte courant */
+body, p, a, span, div {
+    font-family: 'Acumin', sans-serif;
+}

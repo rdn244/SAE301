@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande Confirmée - OPALE PARIS{% endblock %}
+
+{% block body %}
+    <div class="success-page-container" style="text-align: center; padding: 150px 20px;">
+        <h1 style="font-size: 3rem; margin-bottom: 20px;">Merci pour votre commande !</h1>
+        <p style="font-size: 1.2rem; color: #666; margin-bottom: 40px;">Votre paiement a été accepté. Vous recevrez un email de confirmation d'ici quelques minutes.</p>
+        <a href="{{ path('app_collection') }}" style="background: #121212; color: white; padding: 15px 30px; text-decoration: none; text-transform: uppercase;">Retour à la boutique</a>
+    </div>
+{% endblock %}

@@ -1,3 +1,30 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "Lavish";
+  src: url("../fonts/lavish.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Acumin";
+  src: url("../fonts/acumin.ttf") format("truetype");
+  font-weight: 100 900; /* Important pour les polices variables */
+  font-style: normal;
+  font-display: swap;
+}
+/* --- 2. APPLICATION FORCÉE SUR LA PAGE D'ACCUEIL --- */
+/* Applique Lavish sur tous les titres */
+h1, h2, h3, h4, .section-header h2 {
+  font-family: "Lavish", serif !important;
+  font-weight: 400 !important; /* Lavish est déjà épais, on évite le faux gras */
+}
+
+/* Applique Acumin sur tous les textes */
+body, p, a, span, button, .btn-action {
+  font-family: "Acumin", sans-serif !important;
+}
+
 body {
   background-color: #ffffff;
   font-family: "Helvetica", "Arial", sans-serif;
@@ -211,6 +238,355 @@ section h3::after {
   height: 2px;
   background: #D4AF37;
   margin: 20px auto 0;
+}
+
+.section-desc {
+  width: 64%;
+  margin: 0 auto 35px;
+  color: #666666;
+  line-height: 1.6;
+}
+
+.collaborations-section {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.collaborations-section .collab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+@media (max-width: 900px) {
+  .collaborations-section .collab-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .collaborations-section .collab-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.collaborations-section .collab-card {
+  text-align: left;
+  cursor: pointer;
+}
+.collaborations-section .collab-card .image-wrapper {
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.collaborations-section .collab-card .image-wrapper img {
+  width: 100%;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: block;
+}
+.collaborations-section .collab-card:hover .image-wrapper img {
+  transform: scale(1.03);
+}
+.collaborations-section .collab-card .brand-name {
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  color: #121212;
+  margin-bottom: 5px;
+}
+.collaborations-section .collab-card .product-type {
+  color: #D4AF37;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.services-section {
+  background-color: #ffffff;
+  padding: 100px 20px;
+}
+.services-section .section-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 80px auto;
+}
+.services-section .section-header h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  font-weight: 400;
+  color: #121212;
+  margin-bottom: 30px;
+}
+.services-section .section-header p {
+  color: #999;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.services-section .services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.services-section .service-card {
+  display: flex;
+  flex-direction: row;
+  background: #ffffff;
+  border: 1px solid #E5E5E5;
+  min-height: 500px;
+  align-items: stretch;
+  overflow: hidden;
+}
+.services-section .service-card:nth-child(even) {
+  flex-direction: row-reverse;
+}
+.services-section .service-card .card-image {
+  flex: 0 0 45%;
+  width: 45%;
+  position: relative;
+}
+.services-section .service-card .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.services-section .service-card .card-content {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.services-section .service-card .card-content h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  color: #121212;
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+.services-section .service-card .card-content p {
+  color: #121212;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 400px;
+}
+.services-section .service-card .card-content .btn-action {
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid #ccc;
+  color: #121212;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+.services-section .service-card .card-content .btn-action:hover {
+  border-color: #121212;
+  background: #121212;
+  color: #ffffff;
+}
+@media (max-width: 900px) {
+  .services-section .service-card {
+    flex-direction: column !important;
+    height: auto;
+  }
+  .services-section .service-card .card-image, .services-section .service-card .card-content {
+    width: 100%;
+    flex: none;
+  }
+  .services-section .service-card .card-image {
+    height: 300px;
+  }
+  .services-section .service-card .card-content {
+    padding: 40px 20px;
+  }
+}
+
+.news-home-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+.news-home-section .news-featured {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  margin-top: 60px;
+  text-align: left;
+}
+.news-home-section .news-image-wrapper {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.news-home-section .news-image-wrapper img {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.news-home-section .news-image-wrapper:hover img {
+  transform: scale(1.02);
+}
+.news-home-section .news-image-wrapper .image-overlay-text {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.news-home-section .news-image-wrapper .image-overlay-text .brand {
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  letter-spacing: 5px;
+}
+.news-home-section .news-image-wrapper .image-overlay-text .city {
+  font-size: 0.7rem;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+}
+.news-home-section .news-content {
+  flex: 1;
+}
+.news-home-section .news-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #121212;
+}
+.news-home-section .news-content p {
+  color: #666666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+.news-home-section .news-content .news-link {
+  color: #121212;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 1px solid #D4AF37;
+  padding-bottom: 5px;
+  transition: color 0.3s;
+}
+.news-home-section .news-content .news-link:hover {
+  color: #D4AF37;
+}
+@media (max-width: 900px) {
+  .news-home-section .news-featured {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .news-home-section .news-image-wrapper {
+    width: 100%;
+  }
+  .news-home-section .news-content {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.btn-dark {
+  display: inline-block;
+  background: #121212;
+  color: #ffffff;
+  padding: 15px 40px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: 0.3s;
+  border: 1px solid #121212;
+}
+.btn-dark:hover {
+  background: transparent;
+  color: #121212;
+}
+
+.btn-outline {
+  display: inline-block;
+  border: 1px solid #121212;
+  color: #121212;
+  padding: 15px 40px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.btn-outline:hover {
+  background: #121212;
+  color: #ffffff;
+}
+
+.reviews-section {
+  background-color: #ffffff;
+  padding: 100px 20px 150px 20px;
+}
+.reviews-section .section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.reviews-section .section-header h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem;
+  color: #121212;
+  font-weight: 400;
+  margin: 0;
+}
+.reviews-section .reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .reviews-section .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+}
+.reviews-section .review-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.reviews-section .review-card .review-image {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 50px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.reviews-section .review-card .review-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.reviews-section .review-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  color: #D4AF37;
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+.reviews-section .review-card p {
+  color: #444;
+  font-size: 1rem;
+  line-height: 2;
+  font-family: sans-serif;
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: left;
 }
 
 /*# sourceMappingURL=home.css.map */

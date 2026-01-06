@@ -1,10 +1,41 @@
-// assets/styles/home.scss
 
-// --- VARIABLES LUXE ---
-$black: #121212;       // Noir profond
+@font-face {
+    font-family: 'Lavish';
+    src: url('../fonts/lavish.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Acumin';
+    src: url('../fonts/acumin.ttf') format('truetype');
+    font-weight: 100 900; /* Important pour les polices variables */
+    font-style: normal;
+    font-display: swap;
+}
+
+/* --- 2. APPLICATION FORCÉE SUR LA PAGE D'ACCUEIL --- */
+
+/* Applique Lavish sur tous les titres */
+h1, h2, h3, h4, .section-header h2 {
+    font-family: 'Lavish', serif !important;
+    font-weight: 400 !important; /* Lavish est déjà épais, on évite le faux gras */
+}
+
+/* Applique Acumin sur tous les textes */
+body, p, a, span, button, .btn-action {
+    font-family: 'Acumin', sans-serif !important;
+}
+
+// =========================================
+// VARIABLES LUXE & CONFIG
+// =========================================
+$black: #121212;       // Noir profond (Premium)
 $white: #ffffff;
 $gold: #D4AF37;        // Signature Opale
 $grey-light: #f4f4f4;
+$grey-text: #666666;   // Pour les textes secondaires
 
 // Typographie
 $font-serif: 'Playfair Display', serif;
@@ -18,190 +49,375 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-// --- 1. HEADER INTELLIGENT & LUXE ---
+// =========================================
+// 1. HEADER INTELLIGENT
+// =========================================
 .main-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 50px;
-    box-sizing: border-box;
-    z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 30px 50px; box-sizing: border-box; z-index: 1000;
     transition: all 0.4s ease;
 
-    // STYLE PAR DÉFAUT (Fond Blanc)
-    position: sticky;
-    top: 0;
-    background-color: $white;
-    color: $black;
+    // État par défaut (Fond blanc, sticky)
+    position: sticky; top: 0; background-color: $white; color: $black;
     border-bottom: 1px solid rgba(0,0,0,0.05);
 
-    // STYLE TRANSPARENT (Sur la vidéo d'accueil)
+    // État Transparent (Sur la vidéo)
     &.transparent-mode {
-        position: fixed;
-        top: 0; left: 0; width: 100%;
-        background-color: transparent;
-        color: $white;
+        position: fixed; top: 0; left: 0; width: 100%;
+        background-color: transparent; color: $white;
         border-bottom: 1px solid rgba(255,255,255,0.1);
 
-        // Bouton RDV semi-transparent
         .btn-rdv {
             background-color: rgba(255, 255, 255, 0.1);
-            border-color: $white;
-            color: $white;
+            border-color: $white; color: $white;
             backdrop-filter: blur(5px);
         }
 
-        // INTERACTION AU SURVOL (Le header devient blanc)
+        // Au survol du header transparent -> Devient blanc
         &:hover {
-            background-color: $white;
-            color: $black;
-            border-bottom: 1px solid #eee;
-
+            background-color: $white; color: $black; border-bottom: 1px solid #eee;
             .logo-link, .icon-btn { color: $black; }
-
-            // Le bouton RDV redevient noir
             .btn-rdv {
-                border-color: $black;
-                background-color: $black;
-                color: $white;
-                &:hover {
-                    background-color: $white;
-                    color: $black;
-                    border-color: $black;
-                }
+                border-color: $black; background-color: $black; color: $white;
+                &:hover { background-color: $white; color: $black; border-color: $black; }
             }
         }
     }
 
-    // --- ÉLÉMENTS DU HEADER ---
-    .header-left, .header-right {
-        display: flex; gap: 25px; align-items: center; z-index: 2;
-    }
-
+    // Éléments Header
+    .header-left, .header-right { display: flex; gap: 25px; align-items: center; z-index: 2; }
     .header-center {
         position: absolute; left: 50%; transform: translateX(-50%); z-index: 1;
         .logo-link { text-decoration: none; color: inherit; transition: color 0.3s;}
         .brand-logo { height: 70px; width: auto; display: block; }
     }
 
-    // Bouton "PRENDRE RDV"
+    // Bouton RDV
     .btn-rdv {
-        display: flex; align-items: center;
-        background-color: $black;
-        color: $white;
-        padding: 12px 24px;
-        text-decoration: none; text-transform: uppercase;
-        font-size: 0.7rem; letter-spacing: 1.5px; font-weight: 600;
-        border: 1px solid $black;
-        transition: all 0.3s ease;
-
+        display: flex; align-items: center; background-color: $black; color: $white;
+        padding: 12px 24px; text-decoration: none; text-transform: uppercase;
+        font-size: 0.7rem; letter-spacing: 1.5px; font-weight: 600; border: 1px solid $black; transition: all 0.3s ease;
         svg { width: 16px; height: 16px; margin-right: 8px; }
-
-        &:hover {
-            background-color: transparent;
-            color: $black;
-            border-color: $black;
-        }
+        &:hover { background-color: transparent; color: $black; border-color: $black; }
     }
 
-    // Icônes (Menu, Panier, User)
+    // Icones
     .icon-btn, .icon-link {
-        background: none; border: none; padding: 5px; cursor: pointer;
-        color: inherit; display: flex; align-items: center; text-decoration: none;
-        transition: color 0.3s, transform 0.2s;
-
+        background: none; border: none; padding: 5px; cursor: pointer; color: inherit; display: flex; align-items: center; text-decoration: none; transition: color 0.3s, transform 0.2s;
         svg { stroke-width: 1.5px; width: 26px; height: 26px;}
-
-        &:hover {
-            color: $gold; // Touche dorée au survol
-            transform: translateY(-2px);
-        }
+        &:hover { color: $gold; transform: translateY(-2px); }
     }
 
-    // Compteur Panier
     .cart-btn { position: relative; }
-    .cart-count {
-        position: absolute; top: -2px; right: -4px;
-        background: $gold;
-        color: $white;
-        font-size: 0.65rem; font-weight: bold;
-        width: 18px; height: 18px;
-        border-radius: 50%;
-        display: flex; justify-content: center; align-items: center;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+    .cart-count { position: absolute; top: -2px; right: -4px; background: $gold; color: $white; font-size: 0.65rem; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 }
 
-// --- 2. BANNIÈRE VIDÉO ---
+// =========================================
+// 2. HERO SECTION (VIDÉO)
+// =========================================
 .hero-section {
-    position: relative;
-    text-align: center;
-    height: 100vh;
-    overflow: hidden;
-    background: $black;
-
-    .hero-video {
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        min-width: 100%; min-height: 100%;
-        width: auto; height: auto;
-        object-fit: cover;
-        z-index: 1;
-    }
-
-    .video-overlay {
-        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(18, 18, 18, 0.3);
-        z-index: 2;
-    }
-
+    position: relative; text-align: center; height: 100vh; overflow: hidden; background: $black;
+    .hero-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; object-fit: cover; z-index: 1; }
+    .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 18, 18, 0.3); z-index: 2; }
     .hero-content {
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        color: $white;
-        z-index: 3;
-        width: 100%;
-
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: $white; z-index: 3; width: 100%;
         .hero-title {
-            font-family: $font-serif;
-            font-size: 5rem;
-            margin: 0;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-
-            .hero-subtitle {
-                display: block;
-                font-size: 1rem;
-                letter-spacing: 12px;
-                margin-top: 20px;
-                font-family: $font-sans;
-                font-weight: 300;
-                opacity: 0.9;
-            }
+            font-family: $font-serif; font-size: 5rem; margin: 0; letter-spacing: 5px; text-transform: uppercase;
+            .hero-subtitle { display: block; font-size: 1rem; letter-spacing: 12px; margin-top: 20px; font-family: $font-sans; font-weight: 300; opacity: 0.9; }
         }
     }
 }
 
-// --- 3. SECTIONS STANDARDS ---
+// =========================================
+// 3. SECTIONS GÉNÉRALES
+// =========================================
 section {
     padding: 100px 20px;
     text-align: center;
-
     h3 {
-        font-size: 2.2rem;
-        margin-bottom: 20px;
-        font-family: $font-serif;
-        font-weight: normal;
-        color: $black;
+        font-size: 2.2rem; margin-bottom: 20px; font-family: $font-serif; font-weight: normal; color: $black;
+        &::after { content: ''; display: block; width: 40px; height: 2px; background: $gold; margin: 20px auto 0; }
+    }
+}
+.section-desc { width: 64%; margin: 0 auto 35px; color: $grey-text; line-height: 1.6; }
 
-        // Soulignement doré chic
-        &::after {
-            content: ''; display: block;
-            width: 40px; height: 2px;
-            background: $gold;
-            margin: 20px auto 0;
+// =========================================
+// 4. SECTIONS SPÉCIFIQUES
+// =========================================
+
+// --- COLLABORATIONS (Grille 3x3 stricte) ---
+.collaborations-section {
+    width: 90%; max-width: 1400px; margin: 0 auto;
+
+    .collab-grid {
+        display: grid;
+        // ICI : On force 3 colonnes exactes pour avoir 3 en haut, 3 en bas
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 50px;
+
+        // Tablette : 2 colonnes
+        @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+        // Mobile : 1 colonne
+        @media (max-width: 600px) { grid-template-columns: 1fr; }
+    }
+
+    .collab-card {
+        text-align: left; cursor: pointer;
+        .image-wrapper {
+            overflow: hidden; margin-bottom: 15px;
+            img { width: 100%; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); display: block;}
+        }
+        &:hover .image-wrapper img { transform: scale(1.03); }
+        .brand-name { display: block; font-family: $font-serif; font-size: 1.3rem; color: $black; margin-bottom: 5px; }
+        .product-type { color: $gold; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+    }
+}
+
+// --- SECTION SERVICES & VIP (Liste Verticale) ---
+.services-section {
+    background-color: $white; // Le fond global semble blanc sur ta capture, ou gris très clair
+    padding: 100px 20px;
+
+    // 1. L'EN-TÊTE (Centré)
+    .section-header {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 80px auto; // Marge sous le titre
+
+        h2 {
+            font-family: $font-serif;
+            font-size: 3rem; // Titre très grand "Nos services d'exception"
+            font-weight: 400;
+            color: $black;
+            margin-bottom: 30px;
+        }
+
+        p {
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+    }
+
+    // 2. CONTENEUR DE LA LISTE
+    .services-list {
+        display: flex;
+        flex-direction: column; // Les cartes sont les unes sur les autres
+        gap: 30px; // Espace entre chaque carte
+        max-width: 1100px; // Largeur contenue pour ressembler à la maquette
+        margin: 0 auto;
+    }
+
+    // 3. LA CARTE (Structure Flex Row)
+    .service-card {
+        display: flex;
+        flex-direction: row;
+        background: $white;
+        border: 1px solid #E5E5E5;
+        // --- MODIFICATION ICI ---
+        // Au lieu de height: 500px; fixe, on met une hauteur minimale.
+        // La carte fera au moins 500px, mais peut s'agrandir si besoin.
+        min-height: 500px;
+        align-items: stretch; // Important : assure que l'image fait la même hauteur que le texte
+        overflow: hidden;
+
+        // --- ALTERNANCE (ZIG-ZAG) ---
+        &:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        // Partie IMAGE
+        .card-image {
+            flex: 0 0 45%; // Largeur fixe de 45%
+            width: 45%;
+            position: relative;
+            // Pas de hauteur définie ici, elle suit le parent grâce à align-items: stretch
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; // Remplît la zone sans déformer
+                // --- MODIFICATION ICI ---
+                // On focalise sur le HAUT et le CENTRE de l'image.
+                // Si ça doit couper, ça coupera le bas (les pieds) plutôt que le haut (la tête).
+                object-position: center top;
+                display: block;
+            }
+        }
+
+        // Partie TEXTE
+        .card-content {
+            flex: 1; // Prend le reste de la place (55%)
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; // Centre verticalement
+            align-items: center;     // Centre horizontalement
+            text-align: center;
+
+            h3 {
+                font-family: $font-serif;
+                font-size: 1.8rem;
+                color: $black;
+                margin-bottom: 30px;
+                font-weight: 400;
+            }
+
+            p {
+                color: $black; // Texte assez sombre
+                font-size: 0.95rem;
+                line-height: 1.8;
+                margin-bottom: 40px;
+                max-width: 400px; // Limite la largeur du texte pour la lisibilité
+            }
+
+            // BOUTON (Style "Outline")
+            .btn-action {
+                display: inline-block;
+                padding: 15px 40px;
+                border: 1px solid #ccc; // Bordure grise fine
+                color: $black;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+                background: transparent;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    border-color: $black;
+                    background: $black;
+                    color: $white;
+                }
+            }
+        }
+
+        // RESPONSIVE (Mobile)
+        @media (max-width: 900px) {
+            flex-direction: column !important; // Toujours empilé sur mobile
+            height: auto; // Hauteur auto
+
+            .card-image, .card-content {
+                width: 100%;
+                flex: none;
+            }
+            .card-image { height: 300px; }
+            .card-content { padding: 40px 20px; }
+        }
+    }
+}
+// --- NEWS ---
+.news-home-section {
+    max-width: 1200px; margin: 0 auto; padding-top: 100px;
+    .news-featured { display: flex; align-items: center; gap: 60px; margin-top: 60px; text-align: left; }
+    .news-image-wrapper {
+        flex: 1; position: relative; overflow: hidden;
+        img { width: 100%; display: block; transition: transform 0.5s ease; }
+        &:hover img { transform: scale(1.02); }
+        .image-overlay-text {
+            position: absolute; bottom: 30px; width: 100%; text-align: center; color: $white; text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            .brand { display: block; font-family: $font-serif; font-size: 2rem; letter-spacing: 5px; }
+            .city { font-size: 0.7rem; letter-spacing: 10px; text-transform: uppercase; }
+        }
+    }
+    .news-content {
+        flex: 1; h2 { font-family: $font-serif; font-size: 2.5rem; margin-bottom: 20px; color: $black; }
+        p { color: $grey-text; margin-bottom: 30px; line-height: 1.6; }
+        .news-link { color: $black; font-weight: bold; text-decoration: none; border-bottom: 1px solid $gold; padding-bottom: 5px; transition: color 0.3s; &:hover { color: $gold; } }
+    }
+    @media (max-width: 900px) { .news-featured { flex-direction: column; gap: 30px; } .news-image-wrapper { width: 100%; } .news-content { width: 100%; text-align: center; } }
+}
+
+// =========================================
+// 5. BOUTONS
+// =========================================
+.btn-dark {
+    display: inline-block; background: $black; color: $white; padding: 15px 40px;
+    text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; text-decoration: none;
+    transition: 0.3s; border: 1px solid $black;
+    &:hover { background: transparent; color: $black; }
+}
+
+.btn-outline {
+    display: inline-block; border: 1px solid $black; color: $black; padding: 15px 40px;
+    text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; text-decoration: none;
+    transition: 0.3s;
+    &:hover { background: $black; color: $white; }
+}
+/// --- SECTION AVIS CLIENTS (Corrigé) ---
+.reviews-section {
+    background-color: $white;
+    padding: 100px 20px 150px 20px; // Beaucoup d'espace en bas
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 80px;
+
+        h2 {
+            font-family: $font-serif;
+            font-size: 3.5rem; // Titre plus imposant
+            color: $black;
+            font-weight: 400;
+            margin: 0;
+        }
+    }
+
+    .reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 60px; // Espace large entre les colonnes
+        max-width: 1300px;
+        margin: 0 auto;
+
+        @media (max-width: 900px) {
+            grid-template-columns: 1fr;
+            gap: 80px;
+        }
+    }
+
+    .review-card {
+        text-align: center; // On centre tout pour l'effet "colonne"
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        // L'IMAGE (Cadrage amélioré)
+        .review-image {
+            width: 100%;
+            height: 300px; // Hauteur plus importante pour bien voir la photo
+            margin-bottom: 50px; // GROS ESPACE demandé entre image et texte
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); // Petite ombre luxe
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; // Remplissage parfait
+                object-position: center top; // Focus visage
+                display: block;
+            }
+        }
+
+        // LE NOM (Doré)
+        h3 {
+            font-family: $font-serif;
+            font-size: 1.8rem;
+            color: #D4AF37; // Or
+            margin-bottom: 30px; // Espace sous le nom
+            font-weight: 400;
+        }
+
+        // LE TEXTE (En long)
+        p {
+            color: #444;
+            font-size: 1rem;
+            line-height: 2; // Interligne aéré pour l'effet "long"
+            font-family: sans-serif; // Ou ta police de texte
+            max-width: 90%; // On resserre le texte pour qu'il descende plus bas
+            margin: 0 auto; // Centré
+            text-align: left; // Lecture plus naturelle ou 'center' selon ton goût
         }
     }
 }

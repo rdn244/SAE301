@@ -23,27 +23,214 @@
         {# 2. SECTION COLLABORATIONS #}
         <section class="collaborations-section">
             <h3>Nos collaborations d'exception</h3>
-            {# ... (Le reste est identique à ta maquette) ... #}
-            <p class="section-desc">Nous avons l'honneur de collaborer avec les Maisons les plus prestigieuses...</p>
-            <a href="#" class="btn-outline">Voir la collection</a>
+            <p class="section-desc">Nous avons l’honneur de collaborer avec les Maisons les plus prestigieuses du luxe. Louis Vuitton, Gucci, Dior… Autant de partenaires qui nous accompagnent pour sublimer chaque silhouette et offrir à nos clients une expérience stylistique rare, raffinée et entièrement personnalisée.</p>
+            <a href="{{ path('app_collection') }}" class="btn-outline">Voir la collection</a>
 
             <div class="collab-grid">
-                {% for i in 1..6 %}
-                    <div class="collab-card">
-                        <div class="image-wrapper">
-                            {# Utilise tes vraies images ici #}
-                            <img src="https://via.placeholder.com/400x400/eee/000?text=Luxe+{{ i }}" alt="Collaboration">
-                        </div>
-                        <div class="card-info">
-                            <span class="brand-name">Louboutin x OPALE</span>
-                            <span class="product-type">Articles Femme - Chaussures</span>
-                        </div>
+                <div class="collab-card">
+                    <div class="image-wrapper">
+                        <img src="{{ asset('img/collection2.jpg') }}" alt="Louboutin x OPALE">
                     </div>
-                {% endfor %}
+                    <div class="card-info">
+                        <span class="brand-name">Articles Femme</span>
+                        <span class="product-type">Chaussures </span>
+                    </div>
+                </div>
+                <div class="collab-card">
+                    <div class="image-wrapper">
+                        <img src="{{ asset('img/collection3.jpg') }}" alt="Maison Margiela x OPALE">
+                    </div>
+                    <div class="card-info">
+                        <span class="brand-name">Articles Femme</span>
+                        <span class="product-type">Robes de soirée </span>
+                    </div>
+                </div>
+                <div class="collab-card">
+                    <div class="image-wrapper">
+                        <img src="{{ asset('img/collection1.jpg') }}" alt="LV x OPALE">
+                    </div>
+                    <div class="card-info">
+                        <span class="brand-name">Articles Femme </span>
+                        <span class="product-type">Maroquinerie </span>
+                    </div>
+                </div>
+                <div class="collab-card">
+                    <div class="image-wrapper">
+                        <img src="{{ asset('img/collection4.jpg') }}" alt="LV x OPALE">
+                    </div>
+                    <div class="card-info">
+                        <span class="brand-name">Articles Homme </span>
+                        <span class="product-type">Chaussures </span>
+                    </div>
+                </div>
+                <div class="collab-card">
+                    <div class="image-wrapper">
+                        <img src="{{ asset('img/collection5.jpg') }}" alt="DIOR x OPALE">
+                    </div>
+                    <div class="card-info">
+                        <span class="brand-name">Articles Homme </span>
+                        <span class="product-type">Costumes & Vestes </span>
+                    </div>
+                </div>
+                <div class="collab-card">
+                    <div class="image-wrapper">
+                        <img src="{{ asset('img/collection6.jpg') }}" alt="Gucci x OPALE">
+                    </div>
+                    <div class="card-info">
+                        <span class="brand-name">Articles Homme </span>
+                        <span class="product-type">Accessoires </span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        {# ... (Le reste des sections Services et Actualités suit ici) ... #}
+        {# 3. SECTION SERVICES D'EXCEPTION #}
+        <section class="services-section">
+
+            <div class="section-header">
+                <h2>Nos services d'exception</h2>
+                <p>
+                    Découvrez nos services exclusifs : un Audit Dressing pour révéler l'essence de votre style,
+                    un Personal Shopping sur-mesure pour trouver les pièces parfaites, un Stylisme Événement dédié
+                    à vos moments d'exception, et notre formule VIP All Inclusive, l'accompagnement ultime pour une
+                    expérience mode complète, raffinée et sans contraintes.
+                </p>
+            </div>
+
+            <div class="services-list">
+
+                <div class="service-card">
+                    <div class="card-image">
+                        <img src="img/service4.jpg" alt="Audit Dressing">
+                    </div>
+                    <div class="card-content">
+                        <h3>Audit Dressing</h3>
+                        <p>
+                            Nous analysons votre garde-robe en profondeur pour révéler votre style, éliminer le superflu
+                            et identifier les pièces essentielles qui subliment votre silhouette. Un dressing optimisé,
+                            cohérent et pensé pour vos besoins.
+                        </p>
+                        <a href="/reservation" class="btn-action">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-image">
+                        <img src="img/service3.jpg" alt="Personal Shopping">
+                    </div>
+                    <div class="card-content">
+                        <h3>Personal Shopping</h3>
+                        <p>
+                            Nous analysons votre garde-robe en profondeur pour révéler votre style, éliminer le superflu
+                            et identifier les pièces essentielles qui subliment votre silhouette. Un dressing optimisé,
+                            cohérent et pensé pour vos besoins.
+                        </p>
+                        <a href="/reservation" class="btn-action">Réserver</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-image">
+                        <img src="img/service2.jpg" alt="Stylisme Événement">
+                    </div>
+                    <div class="card-content">
+                        <h3>Stylisme Événement</h3>
+                        <p>
+                            Nous analysons votre garde-robe en profondeur pour révéler votre style, éliminer le superflu
+                            et identifier les pièces essentielles qui subliment votre silhouette. Un dressing optimisé,
+                            cohérent et pensé pour vos besoins.
+                        </p>
+                        <a href="/reservation" class="btn-action">Découvrir</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="card-image">
+                        <img src="img/service1.jpg" alt="Formule VIP">
+                    </div>
+                    <div class="card-content">
+                        <h3>Formule VIP - All Inclusive</h3>
+                        <p>
+                            La formule VIP All Inclusive réunit nos trois prestations — Audit Dressing, Personal Shopping
+                            et Stylisme Événement — dans une journée entièrement dédiée à vous, pensée comme une expérience
+                            de mode exclusive, sur-mesure et profondément personnalisée.
+                        </p>
+                        <a href="/reservation" class="btn-action">Découvrir</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        {# 4. SECTION ACTUALITÉS #}
+        <section class="news-home-section">
+            <h3>Les dernières actualités </h3>
+            <div class="news-featured">
+                <div class="news-image-wrapper">
+                    <img src="{{ asset('img/opaleactu1.jpg') }}" alt="Zyad Brahimi">
+                    <div class="image-overlay-text">
+                        <span class="brand">OPALE </span>
+                        <span class="city">PARIS </span>
+                    </div>
+                </div>
+                <div class="news-content">
+                    <h2>Zyad Brahimi: Le Style d'un Ballon d'Or par Opale </h2>
+                    <p>Opale a eu l'honneur d'accompagner Zyad Brahimi, le détenteur du Ballon d'Or </p>
+                    <a href="{{ path('app_news_show', {slug: 'zyad-brahimi'}) }}"class="news-link">Lire l'article</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+
+            <div class="section-header">
+                <h2>Les avis clients</h2>
+            </div>
+
+            <div class="reviews-grid">
+
+                <div class="review-card">
+                    <div class="review-image">
+                        <img src="img/dj-snake.png" alt="Dj Snake">
+                    </div>
+                    <h3>Dj Snake</h3>
+                    <p>
+                        Opale, c’est plus qu’un service de stylisme, c’est une vision.
+                        J’ai besoin de looks qui parlent fort sans en faire trop.
+                        Que ce soit sur scène ou sur un tapis rouge, tout est pensé dans le détail.
+                        Je n’ai rien à gérer : ils comprennent l’énergie, le rythme, l’image.
+                        C’est précis, efficace, et toujours juste. »
+                    </p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-image">
+                        <img src="img/michael-b-jordan.png" alt="Michael B Jordan">
+                    </div>
+                    <h3>Michael B Jordan</h3>
+                    <p>
+                        Working with Opale is about confidence and presence.
+                        They understand how style supports storytelling — who you are, what you represent,
+                        and where you’re going. Every fitting feels intentional. It’s elegant,
+                        modern, powerful. Exactly what I expect at the highest level.
+                    </p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-image">
+                        <img src="img/ryad-mahrez.png" alt="Ryad Mahrez">
+                    </div>
+                    <h3>Ryad Mahrez</h3>
+                    <p>
+                        Opale m’a permis de passer un cap dans mon image.
+                        J’aime quand c’est classe, simple, mais avec du caractère. Pour les
+                        grandes cérémonies comme pour les événements privés, tout est fluide,
+                        bien organisé, sans pression. On se sent accompagné, respecté, et mis en valeur.
+                    </p>
+                </div>
+
+            </div>
+        </section>
 
     </div>
 {% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Panier - OPALE PARIS{% endblock %}
+
+{% block body %}
+    <div class="cart-page-container">
+        <h1>Mon Panier</h1>
+
+        {% if items is empty %}
+            <div class="empty-cart-message">
+                <p>Votre panier est actuellement vide.</p>
+                <a href="{{ path('app_collection') }}" class="btn-continue">Continuer mes achats</a>
+            </div>
+        {% else %}
+            <div class="cart-content">
+                {# TABLEAU DES PRODUITS #}
+                <div class="cart-items">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td class="product-col">
+                                    <div class="product-detail">
+                                        <img src="{{ asset('img/' ~ item.product.image) }}" alt="{{ item.product.title }}">
+                                        <span>{{ item.product.title }}</span>
+                                    </div>
+                                </td>
+                                <td>{{ item.product.price }}</td>
+
+                                {# C'EST ICI QUE CA CHANGE : SÉLECTEUR DE QUANTITÉ #}
+                                <td>
+                                    <div class="qty-selector">
+                                        {# Bouton Moins #}
+                                        <a href="{{ path('cart_decrease', {id: item.product.id}) }}" class="btn-qty">-</a>
+
+                                        {# Le chiffre #}
+                                        <span class="qty-number">{{ item.quantity }}</span>
+
+                                        {# Bouton Plus #}
+                                        <a href="{{ path('cart_increase', {id: item.product.id}) }}" class="btn-qty">+</a>
+                                    </div>
+                                </td>
+
+                                <td class="item-total">{{ item.subtotal|number_format(0, ',', ' ') }} €</td>
+                                <td>
+                                    <a href="{{ path('cart_remove', {id: item.product.id}) }}" class="remove-link">×</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                {# RÉSUMÉ COMMANDE #}
+                <div class="cart-summary">
+                    <h2>Récapitulatif</h2>
+                    <div class="summary-row total-row">
+                        <span>Total</span>
+                        <span>{{ total|number_format(0, ',', ' ') }} €</span>
+                    </div>
+                    <p class="taxes-note">Taxes et frais de port calculés à l'étape suivante</p>
+
+                    <a href="{{ path('cart_checkout') }}" class="btn-checkout">Procéder au paiement</a>
+                    <a href="{{ path('app_collection') }}" class="back-link">Continuer mes achats</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
