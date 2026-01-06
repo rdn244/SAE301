@@ -330,23 +330,46 @@ $font-sans: 'Helvetica', 'Arial', sans-serif;
         margin-top: 5px;
 
         .btn-add-cart {
-            background-color: transparent;
-            border: 1px solid #121212;
-            color: #121212;
-            padding: 5px 12px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Helvetica', sans-serif;
+            // 1. Forme et Taille
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;         // Taille du cercle
+            height: 42px;        // Taille du cercle
+            border-radius: 50%;  // Rend le bouton rond
+            padding: 0;          // Enlève les marges internes
 
-            &:hover {
-                background-color: #121212;
-                color: #fff;
+            // 2. Couleurs (Style Luxe Minimaliste)
+            background-color: transparent;
+            border: 1px solid #121212; // Bordure fine noire
+            color: #121212;            // Couleur de l'icône
+            cursor: pointer;
+            transition: all 0.3s ease; // Animation fluide
+
+            // 3. L'icône à l'intérieur
+            svg {
+                pointer-events: none; // Empêche les bugs de clic sur l'icône
+                transition: stroke 0.3s ease;
             }
 
+            // 4. Effet au survol
+            &:hover {
+                background-color: #121212; // Fond noir
+                color: #ffffff;            // Icône blanche
+                transform: translateY(-2px); // Petit effet de levitation
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1); // Ombre douce
+            }
+
+            // 5. Au clic
             &:active {
-                transform: scale(0.95); // Petit effet de clic
+                transform: translateY(0);
+            }
+            &.is-added {
+                background-color: #121212; // Fond noir
+                color: #ffffff;            // Coche blanche
+                border-color: #121212;
+                transform: scale(1.1);     // Petit effet de "pop"
+                pointer-events: none;      // Empêche de recliquer pendant l'animation
             }
         }
     }

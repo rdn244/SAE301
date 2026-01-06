@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error("❌ Erreur chargement panier :", error));
 
-    // 2. Gérer le clic sur "Ajouter +"
+    // 2. Gérer le clic sur "Ajouter +" (VERSION LUXE / ICÔNES)
     const buttons = document.querySelectorAll('.btn-add-cart');
     console.log(`✅ ${buttons.length} boutons 'Ajouter' trouvés sur la page.`);
 
@@ -52,16 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Effet visuel "En cours..."
-            const originalText = this.innerText;
-            this.innerText = "Ajout...";
-            this.style.backgroundColor = "#121212";
-            this.style.color = "#fff";
+            // A. SAUVEGARDE DE L'ÉTAT INITIAL (L'icône du sac)
+            // On utilise innerHTML car c'est un SVG, pas du texte
+            const originalIcon = this.innerHTML;
 
             // Appel AJAX vers Symfony
             fetch(`${urlId}`, { method: 'POST' })
                 .then(res => {
-                    // Si le serveur renvoie une erreur (500 ou 404), on lève une exception
                     if (!res.ok) {
                         throw new Error(`Erreur serveur : ${res.status}`);
                     }
@@ -71,26 +68,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     console.log("✅ Réponse serveur :", data);
 
                     if(data.status === 'success') {
-                        // Mettre à jour le badge
+                        // Mettre à jour le badge du header
                         updateBadge(data.totalQuantity);
 
-                        // Message de succès
-                        this.innerText = "Ajouté !";
+                        // B. TRANSFORMATION EN COCHE DE VALIDATION (Check)
+                        // On injecte le SVG "Check" à la place du sac
+                        this.innerHTML = `
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        `;
 
-                        // Remettre le bouton normal après 2 secondes
+                        // On ajoute la classe pour le fond noir (définie dans shop.scss)
+                        this.classList.add('is-added');
+
+                        // C. RETOUR À L'ÉTAT INITIAL APRÈS 2.5 SECONDES
                         setTimeout(() => {
-                            this.innerText = originalText;
-                            this.style.backgroundColor = "transparent";
-                            this.style.color = "#121212";
-                        }, 2000);
+                            this.innerHTML = originalIcon; // On remet le sac
+                            this.classList.remove('is-added'); // On enlève le fond noir
+                        }, 2500);
                     }
                 })
                 .catch(error => {
                     console.error("❌ ERREUR AJAX :", error);
-                    // Feedback visuel d'erreur pour l'utilisateur
-                    this.innerText = "Erreur";
-                    this.style.backgroundColor = "red";
+                    // Feedback discret en cas d'erreur (bordure rouge)
                     this.style.borderColor = "red";
+                    setTimeout(() => {
+                        this.style.borderColor = "#121212";
+                    }, 2000);
                 });
         });
     });

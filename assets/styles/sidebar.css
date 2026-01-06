@@ -43,7 +43,8 @@
   font-family: "Helvetica", "Arial", sans-serif;
   font-weight: bold;
   letter-spacing: 2px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
   color: #999;
 }
 .sidebar-menu .sidebar-header .close-menu-btn {
@@ -75,14 +76,16 @@
 .sidebar-menu .sidebar-content .nav-links li a {
   text-decoration: none;
   font-family: "Playfair Display", serif;
-  font-size: 1.8rem;
+  font-size: 2.2rem;
+  font-weight: 400;
   color: #121212;
   display: block;
-  transition: color 0.3s, transform 0.2s;
+  transition: all 0.3s ease;
 }
 .sidebar-menu .sidebar-content .nav-links li a:hover {
   color: #D4AF37;
   transform: translateX(10px);
+  font-style: italic;
 }
 .sidebar-menu .sidebar-content .sidebar-footer {
   margin-top: auto;
@@ -96,7 +99,7 @@
   padding: 15px 0;
   margin-top: 10px;
   font-family: "Helvetica", "Arial", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;

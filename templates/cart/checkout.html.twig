@@ -1,66 +1,109 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Paiement Sécurisé - OPALE PARIS{% endblock %}
+{% block title %}Paiement - OPALE PARIS{% endblock %}
 
 {% block body %}
     <div class="checkout-page-container">
 
+        {# EN-TÊTE #}
         <div class="checkout-header">
-            <h1>Paiement Sécurisé</h1>
-            <p>Total à régler : <strong>{{ total|number_format(0, ',', ' ') }} €</strong></p>
+            <h1 class="page-title">Paiement Sécurisé</h1>
+            <div class="total-display">
+                <span class="label">Total à régler</span>
+                <span class="amount">{{ total|number_format(0, ',', ' ') }} €</span>
+            </div>
         </div>
 
-        {# DÉBUT DE TON CODE #}
+        {# LE FORMULAIRE #}
         <div class="modal">
-            {# On pointe le formulaire vers la route de succès #}
             <form class="form" action="{{ path('cart_checkout_success') }}" method="POST">
+
+                {# OPTIONS PAYPAL/GOOGLE #}
+                <div class="payment--options">
+                    <button type="button" name="paypal" aria-label="Paypal">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="#003087" d="M20.067 8.478c.97 3.165-1.056 6.914-5.373 6.914h-3.324l-.79 4.992h-3.4l.117-.743.83-5.263.15-.964h2.257c2.972 0 4.584-1.353 4.965-4.218z"/><path fill="#009cde" d="M17.436 4.978c.97 3.165-1.056 6.914-5.373 6.914h-3.324l-.79 4.992h-3.4l2.126-13.435h5.176c2.972 0 5.16 1.092 5.595 1.529z"/></svg>
+                    </button>
+                    <button type="button" name="apple-pay" aria-label="Apple Pay">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="20" height="20"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+                    </button>
+                    <button type="button" name="google-pay" aria-label="Google Pay">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="#4285F4" d="M23.49 12.275c0-.848-.076-1.663-.217-2.45H12v4.64h6.44c-.277 1.495-1.122 2.763-2.394 3.615v3.004h3.876c2.267-2.088 3.575-5.165 3.575-8.809z"/><path fill="#34A853" d="M12 24c3.233 0 5.945-1.072 7.925-2.905l-3.876-3.004c-1.072.72-2.443 1.144-4.049 1.144-3.12 0-5.76-2.108-6.704-4.943H1.288v3.11C3.253 21.31 7.353 24 12 24z"/><path fill="#FBBC05" d="M5.296 14.292c-.24-.72-.375-1.487-.375-2.292s.135-1.572.375-2.292V6.6H1.288C.466 8.237 0 10.07 0 12s.466 3.763 1.288 5.4l4.008-3.108z"/><path fill="#EA4335" d="M12 4.75c1.76 0 3.342.605 4.59 1.796l3.443-3.443C17.94 1.168 15.23 0 12 0 7.353 0 3.253 2.69 1.288 6.6l4.008 3.108c.944-2.836 3.584-4.958 6.704-4.958z"/></svg>
+                    </button>
+                </div>
+
+                <div class="separator">
+                    <hr class="line">
+                    <p>ou payer par carte</p>
+                    <hr class="line">
+                </div>
+
+                {# BOUTON MAGIQUE POUR LA DÉMO #}
+                <div style="text-align: center; margin-bottom: 15px;">
+                    <button type="button" id="auto-fill-btn" style="background:none; border:none; color:#999; text-decoration:underline; cursor:pointer; font-size:0.75rem;">
+                        (Démo : Remplir automatiquement)
+                    </button>
+                </div>
+
                 <div class="credit-card-info--form">
                     <div class="input_container">
-                        <label class="input_label" for="password_field">Nom du titulaire</label>
-                        <input placeholder="Jean Dupont" title="Nom complet" name="input-name" type="text" class="input_field" id="password_field" required>
+                        <label class="input_label" for="card_holder">Nom du titulaire</label>
+                        <input placeholder="Jean Dupont" name="card_holder" type="text" class="input_field" id="card_holder" required>
                     </div>
                     <div class="input_container">
-                        <label class="input_label" for="password_field">Numéro de carte</label>
-                        <input placeholder="0000 0000 0000 0000" title="Numéro de carte" name="input-name" type="text" class="input_field" id="password_field" required>
+                        <label class="input_label" for="card_number">Numéro de carte</label>
+                        {# J'ai changé le type en text pour permettre les espaces #}
+                        <input placeholder="0000 0000 0000 0000" name="card_number" type="text" class="input_field" id="card_number" maxlength="19" required>
                     </div>
                     <div class="input_container">
-                        <label class="input_label" for="password_field">Date d'expiration / CVV</label>
+                        <label class="input_label">Date d'expiration / CVV</label>
                         <div class="split">
-                            <input placeholder="MM/AA" title="Date d'expiration" name="input-name" type="text" class="input_field" id="password_field" required>
-                            <input placeholder="123" title="CVV" name="cvv" type="number" class="input_field" id="password_field" required>
+                            <input placeholder="MM/AA" name="expiry" type="text" class="input_field" id="card_expiry" maxlength="5" required>
+                            <input placeholder="123" name="cvv" type="text" class="input_field" id="card_cvv" maxlength="3" required>
                         </div>
                     </div>
-
-                    {# BOUTON PAYER #}
-                    <button class="purchase--btn">Payer {{ total|number_format(0, ',', ' ') }} €</button>
-
-                    <div class="separator">
-                        <hr class="line">
-                        <p>ou payer avec</p>
-                        <hr class="line">
-                    </div>
-                    <div class="payment--options">
-                        <button type="button" name="paypal">
-                            {# ... (Tes SVGs Paypal, Apple Pay, Google Pay sont ici, je les laisse tels quels) ... #}
-                            {# Pour raccourcir la réponse, je mets juste un texte, mais GARDE TES SVG d'origine ! #}
-                            <span>PayPal</span>
-                        </button>
-                        <button type="button" name="apple-pay">
-                            <span>Apple Pay</span>
-                        </button>
-                        <button type="button" name="google-pay">
-                            <span>Google Pay</span>
-                        </button>
-                    </div>
                 </div>
+
+                <button class="purchase--btn">Payer {{ total|number_format(0, ',', ' ') }} €</button>
             </form>
         </div>
-        {# FIN DE TON CODE #}
 
-        <div class="secure-note">
-            <p>🔒 Paiement 100% sécurisé et chiffré SSL.</p>
+        {# LIEN RETOUR #}
+        <div class="checkout-footer">
+            <p>🔒 Paiement 100% sécurisé</p>
             <a href="{{ path('cart_index') }}">Retour au panier</a>
         </div>
 
     </div>
+
+    {# SCRIPT JS POUR L'AUTO-REMPLISSAGE #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnDemo = document.getElementById('auto-fill-btn');
+
+            if(btnDemo) {
+                btnDemo.addEventListener('click', function() {
+                    // Remplissage des champs
+                    document.getElementById('card_holder').value = 'Maison Opale';
+                    document.getElementById('card_number').value = '4242 4242 4242 4242'; // Carte de test classique
+                    document.getElementById('card_expiry').value = '12/28';
+                    document.getElementById('card_cvv').value = '123';
+
+                    // Petit effet visuel pour dire "c'est fait"
+                    btnDemo.innerText = "✅ Formulaire rempli !";
+                    setTimeout(() => {
+                        btnDemo.innerText = "(Démo : Remplir automatiquement)";
+                    }, 2000);
+                });
+            }
+
+            // Bonus : Formatage automatique du numéro de carte (espaces tous les 4 chiffres)
+            const numInput = document.getElementById('card_number');
+            numInput.addEventListener('input', function (e) {
+                let value = e.target.value.replace(/\D/g, ''); // Enlève tout ce qui n'est pas chiffre
+                value = value.match(/.{1,4}/g)?.join(' ') || value; // Ajoute espace tous les 4
+                e.target.value = value;
+            });
+        });
+    </script>
+
 {% endblock %}

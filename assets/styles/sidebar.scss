@@ -4,8 +4,8 @@
 $black: #121212;
 $white: #ffffff;
 $gold: #D4AF37;
-$grey-bg: #f9f9f9; // Nouvelle variable pour le fond du bouton
-$font-serif: 'Playfair Display', serif;
+$grey-bg: #f9f9f9;
+$font-serif: 'Playfair Display', serif; // La police Luxe
 $font-sans: 'Helvetica', 'Arial', sans-serif;
 
 // 1. Le fond sombre (Overlay)
@@ -42,7 +42,15 @@ $font-sans: 'Helvetica', 'Arial', sans-serif;
         padding: 30px;
         border-bottom: 1px solid #f0f0f0;
 
-        .menu-title { font-family: $font-sans; font-weight: bold; letter-spacing: 2px; font-size: 0.9rem; color: #999; }
+        .menu-title {
+            font-family: $font-sans;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #999;
+        }
+
         .close-menu-btn {
             background: none; border: none; cursor: pointer; color: $black;
             transition: color 0.3s, transform 0.3s; padding: 5px;
@@ -56,38 +64,53 @@ $font-sans: 'Helvetica', 'Arial', sans-serif;
         flex-grow: 1;
         display: flex; flex-direction: column;
 
+        // --- C'EST ICI QUE CA CHANGE ---
         .nav-links {
             list-style: none; padding: 0; margin: 0;
             li {
                 margin-bottom: 25px;
                 a {
-                    text-decoration: none; font-family: $font-serif; font-size: 1.8rem; color: $black; display: block;
-                    transition: color 0.3s, transform 0.2s;
-                    &:hover { color: $gold; transform: translateX(10px); }
+                    text-decoration: none;
+
+                    // Application de la police Playfair Display
+                    font-family: $font-serif;
+
+                    // Taille augmentée pour l'impact visuel
+                    font-size: 2.2rem;
+
+                    // Important : Regular (400) est plus chic que Bold pour cette police
+                    font-weight: 400;
+
+                    color: $black;
+                    display: block;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        color: $gold;
+                        transform: translateX(10px);
+                        font-style: italic; // Petit effet italique au survol (très luxe)
+                    }
                 }
             }
         }
+        // -------------------------------
 
-        // FOOTER DU MENU (MODIFIÉ POUR LA VISIBILITÉ)
+        // FOOTER DU MENU
         .sidebar-footer {
             margin-top: auto;
             padding-top: 20px;
 
-            // On enlève la bordure fine, on va faire un bouton bloc
-            // border-top: 1px solid #f0f0f0;
-
             .admin-link {
-                display: block; // Prend toute la largeur
+                display: block;
                 text-align: center;
-                background-color: $black; // Fond Noir
-                color: $white;            // Texte Blanc
-
+                background-color: $black;
+                color: $white;
                 padding: 15px 0;
                 margin-top: 10px;
 
-                font-family: $font-sans;
-                font-size: 0.9rem;        // Plus grand
-                font-weight: bold;        // Plus gras
+                font-family: $font-sans; // On garde sans-serif pour le bouton technique
+                font-size: 0.85rem;
+                font-weight: bold;
                 text-transform: uppercase;
                 letter-spacing: 2px;
                 text-decoration: none;
@@ -95,11 +118,10 @@ $font-sans: 'Helvetica', 'Arial', sans-serif;
                 transition: all 0.3s ease;
                 border: 1px solid $black;
 
-                // Effet au survol
                 &:hover {
-                    background-color: $white; // Devient blanc
-                    color: $black;            // Texte noir
-                    border-color: $black;     // Bordure noire visible
+                    background-color: $white;
+                    color: $black;
+                    border-color: $black;
                 }
             }
         }
