@@ -1,4 +1,3 @@
-
 {% extends 'base.html.twig' %}
 
 {% block title %}Backlog - Février 2025{% endblock %}
@@ -8,20 +7,31 @@
 {% block body %}
     <div class="backlog-container">
 
-        {# SIDEBAR GAUCHE #}
+        {# --- SIDEBAR GAUCHE (Style Opale) --- #}
         <div class="backlog-sidebar">
             <div class="month-nav">
                 <span>◄</span> Février <span>►</span>
             </div>
+            {# Logo vertical #}
+            <div class="vertical-logo-placeholder"></div>
         </div>
 
-        {# CALENDRIER #}
+        {# --- CALENDRIER PRINCIPAL --- #}
         <div class="backlog-main">
             <div class="backlog-header">
+                {# Ton logo #}
                 <img src="{{ asset('icones/Fichier16.svg') }}" alt="OPALE PARIS" class="brand-logo">
                 <div class="user-controls">
-                    <a href="{{ path('app_admin_logout') }}" class="logout-btn">Déconnexion</a>
+                    <a href="{{ path('app_admin_logout') }}" class="logout-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        Déconnexion
+                    </a>
                 </div>
+
+
             </div>
 
             <div class="calendar-weekdays">
@@ -29,14 +39,15 @@
             </div>
 
             <div class="calendar-grid">
-                {# Boucle de 1 à 30 comme sur la maquette #}
+                {# Boucle 1 à 30 #}
                 {% for day in 1..30 %}
                     <div class="calendar-day">
                         <span class="day-number">{{ day }}</span>
+
+
+                        {# Données factices pour l'exemple #}
                         {% if appointments[day] is defined %}
                             {% set rdv = appointments[day] %}
-
-                            {# On passe toutes les infos en attributs pour le JS #}
                             <div class="rdv-card type-{{ rdv.type }}"
                                  onclick="openModal({{ rdv|json_encode|e('html_attr') }}, '{{ day }} Février')">
                                 <div class="client-name">{{ rdv.client }}</div>
@@ -47,76 +58,113 @@
                     </div>
                 {% endfor %}
             </div>
+            <div class="app-copyright">
+                @ 2025 OPALE PARIS, All rights reserved.
+            </div>
         </div>
 
-        {# --- NOUVEAU : LA MODALE POP-UP --- #}
+
+
+        {# --- LA MODALE (NOUVELLE STRUCTURE "TELEPHONE") --- #}
         <div class="modal-overlay" id="rdvModal">
-            <div class="modal-card">
 
-                <div class="modal-header">
-                    <h3>Détails du rendez-vous:</h3>
-                </div>
+            {# 1. LE CORPS NOIR (Le support) #}
+            <div class="modal-phone-body">
 
-                <div class="modal-body">
-                    <div class="detail-row">
-                        <label>Nom & Prénom:</label>
-                        <span id="m-name">Eric Judor</span>
-                    </div>
-                    <div class="detail-row">
-                        <label>Email:</label>
-                        <span id="m-email">email@test.com</span>
-                    </div>
-                    <div class="detail-row">
-                        <label>Date & Heure:</label>
-                        <span id="m-time">9h</span>
-                    </div>
-                    <div class="detail-row">
-                        <label>Adresse:</label>
-                        <span id="m-address">41 Bd Ney, Paris</span>
-                    </div>
-                    <div class="detail-row">
-                        <label>Service:</label>
-                        <span id="m-service">Audit dressing</span>
+                {# 2. L'ÉCRAN BLANC (Contenu infos) #}
+                <div class="modal-screen">
+                    <div class="modal-header">
+                        <h3>Détails du rendez-vous:</h3>
                     </div>
 
-                    <div class="stylist-section">
-                        <label>Stylist désigné:</label>
-                        <div class="stylist-avatars">
-                            <div class="avatar" id="avatar-Chris">Chris</div>
-                            <div class="avatar" id="avatar-Alex">Alex</div>
-                            <div class="avatar" id="avatar-Mike">Mike</div>
+                    <div class="modal-body">
+                        {# Lignes alignées (Nom à gauche, Valeur à droite) #}
+                        <div class="detail-row">
+                            <label>Nom & Prénom:</label>
+                            <span id="m-name">Client Name</span>
+                        </div>
+                        <div class="detail-row">
+                            <label>Email:</label>
+                            <span id="m-email">email@test.com</span>
+                        </div>
+                        <div class="detail-row">
+                            <label>Date & Heure:</label>
+                            <span id="m-time">9h</span>
+                        </div>
+                        <div class="detail-row">
+                            <label>Adresse:</label>
+                            <span id="m-address">41 Bd Ney, Paris</span>
+                        </div>
+                        <div class="detail-row">
+                            <label>Service:</label>
+                            <span id="m-service">Audit dressing</span>
+                        </div>
+
+                        {# Section Stylistes (Grosses images) #}
+                        <div class="stylist-section">
+                            <label>Stylist désigné:</label>
+                            <div class="stylist-avatars">
+
+                                <div class="stylist-wrapper" id="wrap-Chris">
+                                    <div class="avatar" style="background-image: url('{{ asset('img/img.png') }}');"></div>
+                                    <span class="stylist-name">Chris</span>
+                                </div>
+
+                                <div class="stylist-wrapper" id="wrap-Alex">
+                                    <div class="avatar" style="background-image: url('{{ asset('img/img_1.png') }}');"></div>
+                                    <span class="stylist-name">Alex</span>
+                                </div>
+
+                                <div class="stylist-wrapper" id="wrap-Mike">
+                                    <div class="avatar" style="background-image: url('{{ asset('img/img_2.png') }}');"></div>
+                                    <span class="stylist-name">Mike</span>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
+                {# FIN DE L'ÉCRAN BLANC #}
 
-                <div class="modal-footer">
-                    <button class="btn-circle btn-green">✔</button>
-                    <button class="btn-circle btn-grey">✎</button>
-                    <button class="btn-circle btn-red" onclick="closeModal()">✖</button>
+                {# 3. LES BOUTONS (Sur le fond noir) #}
+                <div class="modal-actions-footer">
+                    {# J'ai mis des SVG pour faire pro, mais tu peux remettre tes symboles ✔ ✎ ✖ #}
+                    <button class="btn-circle btn-green">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </button>
+                    <button class="btn-circle btn-grey">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    </button>
+                    <button class="btn-circle btn-red" onclick="closeModal()">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
                 </div>
+
             </div>
+            {# FIN DU CORPS NOIR #}
+
         </div>
 
     </div>
 
     <script>
-        // JS POUR LA POP-UP
+        // JS POUR LA POP-UP (Identique, sauf qu'on cible les bons IDs)
         const modal = document.getElementById('rdvModal');
 
         function openModal(data, dateStr) {
-            // Remplissage des champs
             document.getElementById('m-name').innerText = data.client;
-            document.getElementById('m-email').innerText = data.email;
+            document.getElementById('m-email').innerText = data.email || 'Non renseigné';
             document.getElementById('m-time').innerText = dateStr + ' à ' + data.time;
-            document.getElementById('m-address').innerText = data.address;
+            document.getElementById('m-address').innerText = data.address || 'Adresse inconnue';
             document.getElementById('m-service').innerText = data.service;
 
             // Gestion Avatar Actif
-            document.querySelectorAll('.avatar').forEach(av => av.classList.remove('active'));
-            const activeAvatar = document.getElementById('avatar-' + data.stylist);
-            if(activeAvatar) activeAvatar.classList.add('active');
+            document.querySelectorAll('.stylist-wrapper').forEach(av => av.classList.remove('active'));
+            if(data.stylist) {
+                const activeWrapper = document.getElementById('wrap-' + data.stylist);
+                if(activeWrapper) activeWrapper.classList.add('active');
+            }
 
-            // Affichage (Flex pour centrer)
             modal.style.display = 'flex';
         }
 
@@ -124,7 +172,6 @@
             modal.style.display = 'none';
         }
 
-        // Fermer si on clique en dehors de la carte
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
         });

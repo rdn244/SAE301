@@ -10,6 +10,14 @@
 
         {# 1. HERO SECTION (Bannière VIDÉO) #}
         <section class="hero-section">
+            {# INDICATEUR DE SCROLL (Avec l'action de clic ajoutée) #}
+            <div class="scroll-down-indicator" onclick="document.querySelector('.collaborations-section').scrollIntoView({behavior: 'smooth'})">
+                <span class="scroll-text">Découvrir</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 13l5 5 5-5"></path>
+                    <path d="M7 6l5 5 5-5"></path>
+                </svg>
+            </div>
 
             {# VIDÉO en arrière-plan (autoplay, muet, en boucle) #}
             <video autoplay muted loop playsinline class="hero-video">
@@ -140,7 +148,7 @@
                             et identifier les pièces essentielles qui subliment votre silhouette. Un dressing optimisé,
                             cohérent et pensé pour vos besoins.
                         </p>
-                        <a href="/reservation" class="btn-action">Découvrir</a>
+                        <a href="/reservation" class="btn-action">Réserver</a>
                     </div>
                 </div>
 
@@ -155,7 +163,7 @@
                             et Stylisme Événement — dans une journée entièrement dédiée à vous, pensée comme une expérience
                             de mode exclusive, sur-mesure et profondément personnalisée.
                         </p>
-                        <a href="/reservation" class="btn-action">Découvrir</a>
+                        <a href="/reservation" class="btn-action">Réserver</a>
                     </div>
                 </div>
 
@@ -232,5 +240,52 @@
             </div>
         </section>
 
-    </div>
+
+        {# 5. SECTION CARTE (LEAFLET) #}
+        <section class="map-section">
+            <div class="section-header">
+                <h2>Ou nous trouvez ?</h2>
+                <p>Venez vivre l'expérience Opale au cœur de Paris.</p>
+            </div>
+
+            <div id="opale-map" class="map-container"></div>
+        </section>
+
+    </div> {# Fin de homepage-container #}
+
+    {# --- INCLUSION DE LEAFLET (CSS + JS) --- #}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Coordonnées (Place Vendôme, Paris)
+            var lat = 48.868;
+            var lng = 2.329;
+
+            // 2. Initialisation de la carte
+            // 'scrollWheelZoom: false' empêche de zoomer quand on scrolle la page (meilleure expérience)
+            var map = L.map('opale-map', {
+                scrollWheelZoom: false
+            }).setView([lat, lng], 15);
+
+            // 3. Style de carte "Luxe" (Noir & Blanc / CartoDB Positron)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 20
+            }).addTo(map);
+
+            // 4. Icône Personnalisée (Optionnel, sinon utilise celle par défaut)
+            // Pour faire simple et élégant, on garde le marqueur bleu par défaut ou on peut le styliser plus tard.
+
+            // 5. Ajout du marqueur et de la popup
+            L.marker([lat, lng]).addTo(map)
+                .bindPopup('<div style="text-align:center; font-family: sans-serif;"><b>OPALE PARIS</b><br>12 Place Vendôme<br>75001 Paris</div>')
+                .openPopup();
+        });
+    </script>
+
 {% endblock %}
+
+

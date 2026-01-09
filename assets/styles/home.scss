@@ -116,18 +116,113 @@ body {
 // 2. HERO SECTION (VIDÉO)
 // =========================================
 .hero-section {
-    position: relative; text-align: center; height: 100vh; overflow: hidden; background: $black;
-    .hero-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; object-fit: cover; z-index: 1; }
-    .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(18, 18, 18, 0.3); z-index: 2; }
+    position: relative;
+    text-align: center;
+    height: 100vh;
+    overflow: hidden;
+    background: $black;
+
+    // LA VIDÉO
+    .hero-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: cover;
+        z-index: 1;
+    }
+
+    // LE FILTRE SOMBRE
+    .video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(18, 18, 18, 0.3);
+        z-index: 2;
+    }
+
+    // LE TITRE (Si tu en as un)
     .hero-content {
-        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: $white; z-index: 3; width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $white;
+        z-index: 3;
+        width: 100%;
+
         .hero-title {
-            font-family: $font-serif; font-size: 5rem; margin: 0; letter-spacing: 5px; text-transform: uppercase;
-            .hero-subtitle { display: block; font-size: 1rem; letter-spacing: 12px; margin-top: 20px; font-family: $font-sans; font-weight: 300; opacity: 0.9; }
+            font-family: $font-serif;
+            font-size: 5rem;
+            margin: 0;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+
+            .hero-subtitle {
+                display: block;
+                font-size: 1rem;
+                letter-spacing: 12px;
+                margin-top: 20px;
+                font-family: $font-sans;
+                font-weight: 300;
+                opacity: 0.9;
+            }
+        }
+    }
+
+    // --- NOUVEAU : LA FLÈCHE DE SCROLL ---
+    .scroll-down-indicator {
+        position: absolute;
+        bottom: 30px; // Place l'élément en bas
+        left: 50%;
+        transform: translateX(-50%); // Centre horizontalement
+        z-index: 4; // Au-dessus de l'overlay (qui est à 2)
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $white;
+        opacity: 0.8;
+        cursor: pointer;
+        animation: bounce 2s infinite; // Lance l'animation définie plus bas
+
+        .scroll-text {
+            font-family: $font-sans;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px; // Espace entre texte et flèche
+            font-weight: 500;
+        }
+
+        svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        &:hover {
+            opacity: 1;
         }
     }
 }
 
+// L'ANIMATION DE REBOND (À mettre en dehors de .hero-section ou à la fin du fichier)
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
 // =========================================
 // 3. SECTIONS GÉNÉRALES
 // =========================================
@@ -420,4 +515,54 @@ section {
             text-align: left; // Lecture plus naturelle ou 'center' selon ton goût
         }
     }
+}
+// =========================================
+// 5. SECTION CARTE (LOCATION)
+// =========================================
+.map-section {
+    padding: 80px 0 100px 0; // Pas de padding en bas, la carte colle au footer ou non selon ton goût
+    background-color: $white;
+    text-align: center;
+
+    .section-header {
+        margin-bottom: 50px;
+        padding: 0 20px;
+
+        h2 {
+            font-family: $font-serif; // Ta police luxe (Lavish)
+            font-size: 3rem;
+            color: $black;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-family: $font-sans;
+            color: $grey-text;
+            font-size: 1rem;
+        }
+    }
+
+    .map-container {
+        width: 90%; // Prend 90% de la largeur sur mobile
+        max-width: 1000px; // Ne dépasse jamais 1000px sur grand écran
+        height: 500px; // Hauteur fixe
+        margin: 0 auto; // CENTRE le bloc horizontalement
+        background-color: #eee;
+        z-index: 1;
+
+        // Optionnel : pour faire plus joli
+        box-shadow: 0 20px 50px rgba(0,0,0,0.1); // Ombre portée luxe
+        border: 1px solid #eee; // Bordure fine
+    }
+}
+
+// Petit ajustement pour la popup Leaflet pour qu'elle soit jolie
+.leaflet-popup-content-wrapper {
+    border-radius: 0; // Coins carrés plus modernes
+    padding: 5px;
+}
+.leaflet-popup-content {
+    margin: 10px 15px;
+    line-height: 1.6;
+    font-size: 0.9rem;
 }
